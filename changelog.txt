@@ -1,0 +1,19 @@
+
+ ================
+  MILESTONE
+ ================
+ ⬜️ Test new changes
+ ⬜️ Deep debug features
+ ⬜️ Adjust some features
+
+ ================
+  CHANGELOG
+ ================
+  GIPerf (ver. 20211206-ins-1)
+ ================
+ • Updated module packages & dependencies
+ • Added custom textboxes to adjust `Pickup Range` & `DMG Multiplier` values
+ • Added a quick fix for `Performance Stabilizer`
+ • Fixed `Death Zone` causes player death when jumping
+ • Now `Destruction Zone` will be enabled/disabled whenever you use `Death Zone`
+ • Stability and other minor improvements
