@@ -8,11 +8,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: init-1
-        run: sudo apt-get update
 		
-      - name: init-2
+      - name: init
         run: chmod -R 777 ./1x
 		
       - name: x1
