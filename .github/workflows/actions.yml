@@ -7,15 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+            go-version: '1.17'
+      - run: go version
 
       - name: init
         run: |
             sudo apt-get update
-            sudo apt-get install -y wget
-            sudo wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
-            sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
-            sudo export PATH=$PATH:/usr/local/go/bin
-            sudo go version
             sudo chmod -R 777 ./1x
 
       - name: x1
