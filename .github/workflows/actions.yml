@@ -5,14 +5,12 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      
-      - name: launch
-      run: |
-         sudo apt-get update
-         chmod -R 777 ./1x
+      - name: init
+        run: |
+            sudo apt-get update
+            chmod -R 777 ./1x
 		
       - name: x1
         run: ./1x
