@@ -7,43 +7,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: init
         run: |
             sudo apt-get update
             chmod -R 777 ./1x
-		
+
       - name: x1
         run: ./1x
-		
+
       - name: x2
         run: ./1x
-		
+
       - name: x3
         run: ./1x
-		
+
       - name: x4
         run: ./1x
-		
+
       - name: x5
         run: ./1x
-		
+
       - name: x6
         run: ./1x
-		
+
       - name: x7
         run: ./1x
-		
+
       - name: x8
         run: ./1x
-		
+
       - name: x9
         run: ./1x
-		
+
       - name: x10
         run: ./1x
-		
+
       - name: x11
         run: ./1x
-		
+
       - name: x12
         run: ./1x
