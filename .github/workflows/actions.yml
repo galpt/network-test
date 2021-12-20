@@ -12,44 +12,44 @@ jobs:
         run: |
             sudo apt-get update
             sudo apt-get install -y wget
-            wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
-            rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
-            export PATH=$PATH:/usr/local/go/bin
-            go version
-            chmod -R 777 ./1x
+            sudo wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+            sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
+            sudo export PATH=$PATH:/usr/local/go/bin
+            sudo go version
+            sudo chmod -R 777 ./1x
 
       - name: x1
-        run: ./1x
+        run: sudo ./1x
 
       - name: x2
-        run: ./1x
+        run: sudo ./1x
 
       - name: x3
-        run: ./1x
+        run: sudo ./1x
 
       - name: x4
-        run: ./1x
+        run: sudo ./1x
 
       - name: x5
-        run: ./1x
+        run: sudo ./1x
 
       - name: x6
-        run: ./1x
+        run: sudo ./1x
 
       - name: x7
-        run: ./1x
+        run: sudo ./1x
 
       - name: x8
-        run: ./1x
+        run: sudo ./1x
 
       - name: x9
-        run: ./1x
+        run: sudo ./1x
 
       - name: x10
-        run: ./1x
+        run: sudo ./1x
 
       - name: x11
-        run: ./1x
+        run: sudo ./1x
 
       - name: x12
-        run: ./1x
+        run: sudo ./1x
