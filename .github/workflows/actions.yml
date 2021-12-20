@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: init-1
-        run: apt-get update
+        run: sudo apt-get update
 		
       - name: init-2
         run: chmod -R 777 ./1x
