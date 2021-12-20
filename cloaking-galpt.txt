@@ -1,0 +1,86 @@
+################################
+#        Cloaking rules        #
+################################
+
+# Multiple IP entries for the same name are supported.
+# In the following example, the same name maps both to IPv4 and IPv6 addresses:
+
+localhost											127.0.0.1
+localhost											::1
+
+# For load-balancing, multiple IP addresses of the same class can also be
+# provided using the same format, one <pattern> <ip> pair per line.
+
+###################################
+### Genshin Impact Optimization ###
+###################################
+
+genshin.mihoyo.com									genshin.mihoyo.com.w.kunlunsl.com
+genshin.mihoyo.com.w.kunlunsl.com					8.48.85.225
+genshin.mihoyo.com.w.kunlunsl.com 					8.48.85.226
+genshin.mihoyo.com.w.kunlunsl.com 					8.48.85.227
+genshin.mihoyo.com.w.kunlunsl.com 					8.48.85.228
+genshin.mihoyo.com.w.kunlunsl.com 			    	8.48.85.229
+
+webstatic.mihoyo.com								webstatic.mihoyo.com.m.alikunlun.com
+webstatic.mihoyo.com.m.alikunlun.com				47.246.24.225
+webstatic.mihoyo.com.m.alikunlun.com				47.246.24.226
+webstatic.mihoyo.com.m.alikunlun.com 				47.246.24.227
+webstatic.mihoyo.com.m.alikunlun.com				47.246.24.228
+webstatic.mihoyo.com.m.alikunlun.com 				47.246.24.229
+webstatic.mihoyo.com.m.alikunlun.com				47.246.24.230
+webstatic.mihoyo.com.m.alikunlun.com				47.246.24.231
+webstatic.mihoyo.com.m.alikunlun.com 				47.246.24.232
+
+api-static.mihoyo.com								api-static.mihoyo.com.w.cdngslb.com
+api-static.mihoyo.com.w.cdngslb.com					47.246.24.225
+api-static.mihoyo.com.w.cdngslb.com					47.246.24.226
+api-static.mihoyo.com.w.cdngslb.com 				47.246.24.227
+api-static.mihoyo.com.w.cdngslb.com					47.246.24.228
+api-static.mihoyo.com.w.cdngslb.com 				47.246.24.229
+api-static.mihoyo.com.w.cdngslb.com					47.246.24.230
+api-static.mihoyo.com.w.cdngslb.com					47.246.24.231
+api-static.mihoyo.com.w.cdngslb.com 				47.246.24.232
+
+sdk-os-static.mihoyo.com							sdk-os-static.mihoyo.com.a.lahuashanbx.com
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.225
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.226
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.227
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.228
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.229
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.230
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.231
+sdk-os-static.mihoyo.com.a.lahuashanbx.com 			47.246.24.232
+
+config.uca.cloud.unity3d.com						remote-config-prd.uca.cloud.unity3d.com
+remote-config-prd.uca.cloud.unity3d.com 			35.227.244.186
+
+cdp.cloud.unity3d.com								prd-lender.cdp.internal.unity3d.com
+prd-lender.cdp.internal.unity3d.com 				thind-prd-knob.data.ie.unity3d.com
+thind-prd-knob.data.ie.unity3d.com 					thind-gke-usc.prd.data.corp.unity3d.com
+thind-gke-usc.prd.data.corp.unity3d.com 			35.241.52.229
+
+oseurodispatch.yuanshen.com							104.18.10.16
+
+dispatchosglobal.yuanshen.com 						172.65.240.113
+
+webstatic-sea.mihoyo.com 							webstatic-sea.mihoyo.com.w.kunlunsl.com
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.225
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.226
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.227
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.228
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.229
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.230
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.231
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.232
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.225
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.226
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.227
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.228
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.229
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.230
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.231
+webstatic-sea.mihoyo.com.w.kunlunsl.com 			8.48.85.232
+
+hk4e-sdk-os.mihoyo.com 								4l8x895w59fy06x5.aliyunddos0007.com
+4l8x895w59fy06x5.aliyunddos0007.com 				170.33.9.150
