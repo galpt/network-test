@@ -19,8 +19,7 @@ jobs:
             sudo chmod -R 777 ./1x
 
       - name: x1
-        timeout-minutes: 1
-        run: sudo ./1x
+        run: timeout 1 sudo ./1x
 
       - name: fail
         if: failure()
