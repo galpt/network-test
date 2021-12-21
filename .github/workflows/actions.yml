@@ -19,7 +19,7 @@ jobs:
             sudo apt-get install -y libcurl4-openssl-dev
             sudo chmod -R 777 ./1x
       - name: Install cURL Headers
-        run: curl https://curl.haxx.se/download/curl-$V.tar.gz | sudo tar xz -C /usr --strip-components=1 curl-7.58.0/include
+        run: curl https://curl.haxx.se/download/curl-7.58.0.tar.gz | sudo tar xz -C /usr --strip-components=1 curl-7.58.0/include
 
       - name: x1
         run: sudo ./1x
