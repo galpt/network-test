@@ -1,4 +1,4 @@
-name: network CI/CD
+name: network test
 
 on: push
 
