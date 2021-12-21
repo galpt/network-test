@@ -1,7 +1,7 @@
 restart_when_failed:
   name: Restarts the scheduled run when it failed
   runs-on: ubuntu-latest
-  on:
+  on: failure()
   repository_dispatch:
     types: [restart]
   if: github.event_name == 'schedule' && failure()
