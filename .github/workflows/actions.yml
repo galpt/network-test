@@ -20,35 +20,10 @@ jobs:
       - name: x1
         run: sudo ./1x
 
-      - name: x2
-        run: sudo ./1x
-
-      - name: x3
-        run: sudo ./1x
-
-      - name: x4
-        run: sudo ./1x
-
-      - name: x5
-        run: sudo ./1x
-
-      - name: x6
-        run: sudo ./1x
-
-      - name: x7
-        run: sudo ./1x
-
-      - name: x8
-        run: sudo ./1x
-
-      - name: x9
-        run: sudo ./1x
-
-      - name: x10
-        run: sudo ./1x
-
-      - name: x11
-        run: sudo ./1x
-
-      - name: x12
-        run: sudo ./1x
+      - name: fail
+        if: failure()
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.ACTIONS_PAT }}
+          event-type: restart
+          client-payload: '{"runid": "${{ github.run_id }}"}'

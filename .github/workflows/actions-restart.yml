@@ -1,17 +1,12 @@
-restart_when_failed:
-  name: Restarts the scheduled run when it failed
-  runs-on: ubuntu-latest
-  on: github.event_name == 'push'
+name: restart workflow
+on:
   repository_dispatch:
     types: [restart]
-  if: github.event_name == 'push' && failure()
-  needs: [build, build_pwsh, build_cmd]
-  steps:
-    - name: Retry the workflow
-      run: |
-        curl -i \
-        -X POST \
-        -H "Accept: application/vnd.github.v3+json" \
-        -H "Authorization: token ${{ secrets.ACTIONS_PAT }}" \
-        https://api.github.com/repos/galpt/network-test/actions/workflows/16599845/dispatches \
-        -d '{"ref": "${{ github.ref }}" }'
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: restart workflow
+        run: |
+          URL=https://api.github.com/repos/${{github.repository}}/actions/runs/${{ github.event.client_payload.runid }}/rerun
+          curl -X POST -u "weide-zhou:${{secrets.ACTIONS_PAT}}" $URL
