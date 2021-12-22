@@ -1,4 +1,4 @@
-name: network CI
+name: castella.network CI
 
 on: push
 
