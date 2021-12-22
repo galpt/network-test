@@ -22,7 +22,7 @@ jobs:
         timeout-minutes: 300
         run: sudo ./1x
 
-      - name: fail
+      - name: if fail then restart
         if: failure()
         uses: peter-evans/repository-dispatch@v1
         with:
@@ -30,7 +30,7 @@ jobs:
           event-type: restart
           client-payload: '{"runid": "${{ github.run_id }}"}'
 
-      - name: fail
+      - name: if not fail then refresh
         if: always()
         uses: peter-evans/repository-dispatch@v1
         with:
