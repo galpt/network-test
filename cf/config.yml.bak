@@ -1,0 +1,8 @@
+url: http://localhost:80
+tunnel: e21d33ff-5e1f-486b-bdf3-7c9d9d7c9108
+credentials-file: /root/.cloudflared/e21d33ff-5e1f-486b-bdf3-7c9d9d7c9108.json
+
+protocol: http2
+hello-world: false
+warp-routing:
+  enabled: true
