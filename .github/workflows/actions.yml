@@ -17,7 +17,7 @@ jobs:
             sudo apt-get update
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./1w2x
-            sudo dpkg -i ./cf.deb
+            sudo dpkg -i ./cf/cf.deb
             sudo chmod -R 777 /root/.cloudflared/
             sudo cp ./cf/b37b4928-9439-4374-b225-270e15ab76a8.json /root/.cloudflared/
             sudo cp ./cf/cert.pem /root/.cloudflared/
@@ -27,7 +27,7 @@ jobs:
             sudo cloudflared service install
             sudo service cloudflared start
             
-      - name: Sleep for 5s
+      - name: sleep for 5s
         uses: juliangruber/sleep-action@v1
         with:
           time: 5s
