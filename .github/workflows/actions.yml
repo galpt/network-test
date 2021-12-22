@@ -19,7 +19,7 @@ jobs:
             sudo chmod -R 777 ./1w2x
 
       - name: x1
-        timeout-minutes: 10
+        timeout-minutes: 300
         run: sudo ./1x
 
       - name: fail
