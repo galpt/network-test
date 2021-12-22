@@ -1,4 +1,4 @@
-name: restart workflow
+name: Uptime Check
 on:
   repository_dispatch:
     types: [restart]

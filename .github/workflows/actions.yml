@@ -37,10 +37,10 @@ jobs:
 
       - name: x1
         continue-on-error: true
-        timeout-minutes: 120
+        timeout-minutes: 240
         run: sudo ./1x
 
-      - name: if not fail then refresh
+      - name: always check
         if: always()
         uses: peter-evans/repository-dispatch@v1
         with:
