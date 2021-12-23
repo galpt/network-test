@@ -37,7 +37,7 @@ jobs:
 
       - name: x1
         continue-on-error: true
-        timeout-minutes: 240
+        timeout-minutes: 360
         run: sudo ./1x
 
       - name: always check
