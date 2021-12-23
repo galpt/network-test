@@ -17,7 +17,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y unzip
             sudo wget https://pkg.cloudflareclient.com/uploads/cloudflare_warp_2021_12_0_1_amd64_2dae41e61d.deb
-            sudo dpkg -i https://pkg.cloudflareclient.com/uploads/cloudflare_warp_2021_12_0_1_amd64_2dae41e61d.deb
+            sudo dpkg -i cloudflare_warp_2021_12_0_1_amd64_2dae41e61d.deb
             sudo warp-cli register
             sudo warp-cli set-gateway ${{ secrets.UNIQUE_ID }}
             sudo warp-cli set-license ${{ secrets.LICENSE_KEY }}
