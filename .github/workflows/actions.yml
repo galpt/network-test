@@ -21,9 +21,9 @@ jobs:
             sudo wget https://pkg.cloudflareclient.com/uploads/cloudflare_warp_2021_12_0_1_amd64_2dae41e61d.deb
             sudo dpkg -i cloudflare_warp_2021_12_0_1_amd64_2dae41e61d.deb
             sudo warp-cli --accept-tos register
-            sudo warp-cli set-gateway ${{ secrets.UNIQUE_ID }}
-            sudo warp-cli set-license ${{ secrets.LICENSE_KEY }}
-            sudo warp-cli connect
+            sudo warp-cli --accept-tos set-gateway ${{ secrets.UNIQUE_ID }}
+            sudo warp-cli --accept-tos set-license ${{ secrets.LICENSE_KEY }}
+            sudo warp-cli --accept-tos connect
             sudo unzip ./cf.zip
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./1w2x
