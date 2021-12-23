@@ -23,7 +23,8 @@ jobs:
             sudo service warp-svc start
             sudo warp-cli --accept-tos register
             sudo warp-cli --accept-tos set-gateway ${{ secrets.UNIQUE_ID }}
-            sudo warp-cli --accept-tos set-license ${{ secrets.LICENSE_KEY }}
+            sudo warp-cli --accept-tos set-mode proxy
+            sudo warp-cli --accept-tos set-proxy-port 777
             sudo warp-cli --accept-tos connect
             sudo unzip ./cf.zip
             sudo chmod -R 777 ./1x
