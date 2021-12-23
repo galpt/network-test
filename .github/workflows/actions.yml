@@ -16,16 +16,6 @@ jobs:
         run: |
             sudo apt-get update
             sudo apt-get install -y unzip
-            sudo apt-get install -y nftables
-            sudo systemctl enable nftables.service
-            sudo wget https://pkg.cloudflareclient.com/uploads/cloudflare_warp_2021_12_0_1_amd64_2dae41e61d.deb
-            sudo dpkg -i cloudflare_warp_2021_12_0_1_amd64_2dae41e61d.deb
-            sudo service warp-svc start
-            sudo warp-cli --accept-tos register
-            sudo warp-cli --accept-tos set-gateway ${{ secrets.UNIQUE_ID }}
-            sudo warp-cli --accept-tos set-mode proxy
-            sudo warp-cli --accept-tos set-proxy-port 777
-            sudo warp-cli --accept-tos connect
             sudo unzip ./cf.zip
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./1w2x
