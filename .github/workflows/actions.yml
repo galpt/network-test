@@ -25,7 +25,7 @@ jobs:
             sudo chmod -R 777 /home/runner/work/_temp/
 
       - name: Install Deps
-        #if: steps.cache-castella.outputs.cache-hit != 'true'
+        if: steps.cache-castella.outputs.cache-hit != 'true'
         run: |
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev
 
