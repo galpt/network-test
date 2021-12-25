@@ -25,7 +25,7 @@ jobs:
         run: |
             sudo su
             sudo pwd
-            sudo apt-get install -y wget unzip ffmpeg python3-pip git curl
+            sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl-openssl-dev
             sudo wget https://curl.se/download/curl-7.80.0.tar.gz
             sudo tar xz -C /usr --strip-components=1 curl-7.80.0/include
             sudo pip3 install --upgrade youtube_dl
