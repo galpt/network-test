@@ -24,17 +24,16 @@ jobs:
         run: |
             sudo apt-get update
             sudo apt-get install -y wget unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
-            sudo pwd
             sudo cd /tmp
             sudo git clone --depth 1 -b OpenSSL_1_1_1d-quic-draft-24 https://github.com/tatsuhiro-t/openssl
             sudo cd openssl
             sudo ./config enable-tls1_3 --prefix=$PWD/build
             sudo make -j$(nproc)
             sudo make install_sw
+        working-directory: /tmp
 
       - name: Nghttp3
         run: |
-            sudo pwd
             sudo cd /tmp
             sudo git clone https://github.com/ngtcp2/nghttp3
             sudo cd nghttp3
@@ -42,10 +41,10 @@ jobs:
             sudo ./configure --prefix=$PWD/build --enable-lib-only
             sudo make -j$(nproc) check
             sudo make install
+        working-directory: /tmp
 
       - name: Ngtcp2
         run: |
-            sudo pwd
             sudo cd /tmp
             sudo git clone https://github.com/ngtcp2/ngtcp2
             sudo cd ngtcp2
@@ -53,10 +52,10 @@ jobs:
             sudo ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
             sudo make -j$(nproc) check
             sudo make install
+        working-directory: /tmp
 
       - name: Nghttp2
         run: |
-            sudo pwd
             sudo cd /tmp
             sudo git clone https://github.com/tatsuhiro-t/nghttp2.git
             sudo cd nghttp2
@@ -66,10 +65,10 @@ jobs:
             sudo ./configure
             sudo make -j$(nproc) check
             sudo make install
+        working-directory: /tmp
             
       - name: Install cURL
         run: |
-            sudo pwd
             sudo cd /tmp
             sudo wget https://curl.se/download/curl-7.80.0.tar.gz
             sudo tar -xzvf curl-7.80.0.tar.gz
@@ -77,6 +76,7 @@ jobs:
             sudo ./configure PKG_CONFIG_PATH=/usr/lib/pkgconfig --libdir=/tmp/curl-7.80.0/lib/  --with-ssl=/tmp/openssl/build --with-nghttp3=/tmp/nghttp3/build --with-ngtcp2 --with-nghttp2 --enable-ares --enable-threaded-resolver --disable-static
             sudo make -j$(nproc) check
             sudo make install
+        working-directory: /tmp
 
       - name: Init
         run: |
