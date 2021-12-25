@@ -22,7 +22,7 @@ jobs:
       
       - name: Patched OpenSSL
         run: |
-            sudo mkdir /tmp
+            sudo su -
             sudo chmod -R 777 /tmp
             sudo apt-get update
             sudo apt-get install -y wget unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
