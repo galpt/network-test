@@ -19,22 +19,92 @@ jobs:
         with:
             go-version: '1.17'
       - run: go version
-
-      - name: init
+      
+      - name: Patched OpenSSL
         run: |
             sudo apt-get update
-            sudo apt-get install -y unzip ffmpeg python3-pip git cargo
-            sudo git clone --recursive https://github.com/cloudflare/quiche
-            sudo cd ./quiche
-            sudo cargo build --package quiche --release --features ffi,pkg-config-meta,qlog
-            sudo mkdir quiche/deps/boringssl/src/lib
-            sudo ln -vnf $(find target/release -name libcrypto.a -o -name libssl.a) quiche/deps/boringssl/src/lib/
-            sudo cd ..
-            sudo git clone https://github.com/curl/curl.git
-            sudo cd ./curl
-            sudo autoreconf -fi
-            sudo ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" --with-openssl=$PWD/../quiche/quiche/deps/boringssl/src --with-quiche=$PWD/../quiche/target/release
-            sudo make
+            sudo apt-get install -y wget unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
+            sudo cd /tmp
+            sudo git clone --depth 1 -b OpenSSL_1_1_1d-quic-draft-24 https://github.com/tatsuhiro-t/openssl
+            sudo cd openssl
+            sudo ./config enable-tls1_3 --prefix=$PWD/build
+            sudo make -j$(nproc)
+            sudo make install_sw
+
+      - name: Nghttp3
+        run: |
+            sudo cd /tmp
+            sudo git clone https://github.com/ngtcp2/nghttp3
+            sudo cd nghttp3
+            sudo autoreconf -i
+            sudo ./configure --prefix=$PWD/build --enable-lib-only
+            sudo make -j$(nproc) check
+            sudo make install
+
+      - name: Ngtcp2
+        run: |
+            sudo cd /tmp
+            sudo git clone https://github.com/ngtcp2/ngtcp2
+            sudo cd ngtcp2
+            sudo autoreconf -i
+            sudo ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
+            sudo make -j$(nproc) check
+            sudo make install
+
+      - name: Nghttp2
+        run: |
+            sudo cd /tmp
+            sudo git clone https://github.com/tatsuhiro-t/nghttp2.git
+            sudo cd nghttp2
+            sudo autoreconf -i
+            sudo automake
+            sudo autoconf
+            sudo ./configure
+            sudo make -j$(nproc) check
+            sudo make install
+            
+      - name: Install cURL
+        run: |
+            sudo cd /tmp
+            sudo wget https://curl.se/download/curl-7.80.0.tar.gz
+            sudo tar -xzvf curl-7.80.0.tar.gz
+            sudo cd curl-7.80.0
+            sudo ./configure PKG_CONFIG_PATH=/usr/lib/pkgconfig --libdir=/tmp/curl-7.80.0/lib/  --with-ssl=/tmp/openssl/build --with-nghttp3=/tmp/nghttp3/build --with-ngtcp2 --with-nghttp2 --enable-ares --enable-threaded-resolver --disable-static
+            sudo make -j$(nproc) check
+            sudo make install
+
+      - name: Init
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
+            sudo cd /tmp
+            sudo git clone --depth 1 -b OpenSSL_1_1_1d-quic-draft-24 https://github.com/tatsuhiro-t/openssl
+            sudo cd openssl
+            sudo ./config enable-tls1_3 --prefix=$PWD/build
+            sudo make -j$(nproc)
+            sudo make install_sw
+            sudo cd /tmp
+            sudo git clone https://github.com/ngtcp2/nghttp3
+            sudo cd nghttp3
+            sudo autoreconf -i
+            sudo ./configure --prefix=$PWD/build --enable-lib-only
+            sudo make -j$(nproc) check
+            sudo make install
+            sudo cd /tmp
+            sudo git clone https://github.com/ngtcp2/ngtcp2
+            sudo cd ngtcp2
+            sudo autoreconf -i
+            sudo ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
+            sudo make -j$(nproc) check
+            sudo make install
+            sudo cd /tmp
+            sudo git clone https://github.com/tatsuhiro-t/nghttp2.git
+            sudo cd nghttp2
+            sudo autoreconf -i
+            sudo automake
+            sudo autoconf
+            sudo ./configure
+            sudo make -j$(nproc) check
             sudo make install
             sudo pip3 install --upgrade youtube_dl
             sudo unzip ./cf.zip
@@ -51,7 +121,7 @@ jobs:
             sudo cloudflared service install
             sudo service cloudflared start
 
-      - name: sleep for 5s
+      - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
         with:
           time: 5s
@@ -61,7 +131,7 @@ jobs:
         timeout-minutes: 360
         run: sudo ./1x
 
-      - name: always check
+      - name: Always Check
         if: always()
         uses: peter-evans/repository-dispatch@v1
         with:
