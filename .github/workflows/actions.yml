@@ -32,8 +32,7 @@ jobs:
       - name: Init
         run: |
             sudo pwd
-            sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
-            sudo chmod a+rx /usr/local/bin/yt-dlp
+            sudo python3 -m pip install -U yt-dlp
             sudo unzip ./cf.zip
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./1w2x
