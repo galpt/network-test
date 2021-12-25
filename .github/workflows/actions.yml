@@ -20,7 +20,7 @@ jobs:
             go-version: '1.17'
       - run: go version
       
-      - name: Patched OpenSSL
+      - name: Build quiche and BoringSSL
         run: |
             sudo su -
             mkdir ./temp
@@ -28,71 +28,39 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y wget unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
             cd ./temp
-            sudo git clone --depth 1 -b OpenSSL_1_1_1d-quic-draft-24 https://github.com/tatsuhiro-t/openssl
-            cd openssl
-            sudo ./config enable-tls1_3 --prefix=$PWD/build
-            sudo make -j$(nproc)
-            sudo make install_sw
+            git clone --recursive https://github.com/cloudflare/quiche
+            cd quiche
+            cargo build --package quiche --release --features ffi,pkg-config-meta,qlog
+            mkdir quiche/deps/boringssl/src/lib
+            ln -vnf $(find target/release -name libcrypto.a -o -name libssl.a) quiche/deps/boringssl/src/lib/
 
-      - name: Nghttp3
+      - name: Build curl
         run: |
-            cd ./temp
-            sudo git clone https://github.com/ngtcp2/nghttp3
-            cd nghttp3
-            sudo autoreconf -i
-            sudo ./configure --prefix=$PWD/build --enable-lib-only
-            sudo make -j$(nproc) check
-            sudo make install
-
-      - name: Ngtcp2
-        run: |
-            cd ./temp
-            sudo git clone https://github.com/ngtcp2/ngtcp2
-            cd ngtcp2
-            sudo autoreconf -i
-            sudo ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
-            sudo make -j$(nproc) check
-            sudo make install
-
-      - name: Nghttp2
-        run: |
-            cd ./temp
-            sudo git clone https://github.com/tatsuhiro-t/nghttp2.git
-            cd nghttp2
-            sudo autoreconf -i
-            sudo automake
-            sudo autoconf
-            sudo ./configure
-            sudo make -j$(nproc) check
-            sudo make install
-            
-      - name: Install cURL
-        run: |
-            cd ./temp
-            sudo wget https://curl.se/download/curl-7.80.0.tar.gz
-            sudo tar -xzvf curl-7.80.0.tar.gz
-            cd curl-7.80.0
-            sudo ./configure PKG_CONFIG_PATH=/usr/lib/pkgconfig --libdir=/tmp/curl-7.80.0/lib/  --with-ssl=/tmp/openssl/build --with-nghttp3=/tmp/nghttp3/build --with-ngtcp2 --with-nghttp2 --enable-ares --enable-threaded-resolver --disable-static
-            sudo make -j$(nproc) check
-            sudo make install
+            cd ..
+            git clone https://github.com/curl/curl
+            cd curl
+            autoreconf -fi
+            ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" --with-openssl=$PWD/../quiche/quiche/deps/boringssl/src --with-quiche=$PWD/../quiche/target/release
+            make
+            make install
 
       - name: Init
         run: |
             pwd
-            sudo pip3 install --upgrade youtube_dl
-            sudo unzip ./cf.zip
-            sudo chmod -R 777 ./1x
-            sudo chmod -R 777 ./1w2x
-            sudo dpkg -i ./cf/cf.deb
-            sudo mkdir /root/.cloudflared/
-            sudo chmod -R 777 /root/.cloudflared/
-            sudo cp ./cf/b37b4928-9439-4374-b225-270e15ab76a8.json /root/.cloudflared/
-            sudo cp ./cf/cert.pem /root/.cloudflared/
-            sudo cp ./cf/config.yml /root/.cloudflared/
-            sudo rm -rf /etc/cloudflared/config.yml
-            sudo cloudflared tunnel route dns kokonatto x.castella.network
-            sudo cloudflared service install
-            sudo service cloudflared start
+            pip3 install --upgrade youtube_dl
+            unzip ./cf.zip
+            chmod -R 777 ./1x
+            chmod -R 777 ./1w2x
+            dpkg -i ./cf/cf.deb
+            mkdir /root/.cloudflared/
+            chmod -R 777 /root/.cloudflared/
+            cp ./cf/b37b4928-9439-4374-b225-270e15ab76a8.json /root/.cloudflared/
+            cp ./cf/cert.pem /root/.cloudflared/
+            cp ./cf/config.yml /root/.cloudflared/
+            rm -rf /etc/cloudflared/config.yml
+            cloudflared tunnel route dns kokonatto x.castella.network
+            cloudflared service install
+            service cloudflared start
 
       - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
@@ -103,8 +71,8 @@ jobs:
         continue-on-error: true
         timeout-minutes: 360
         run: |
-            sudo pwd
-            sudo ./1x
+            pwd
+            ./1x
 
       - name: Always Check
         if: always()
