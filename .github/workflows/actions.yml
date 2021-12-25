@@ -24,22 +24,22 @@ jobs:
         if: steps.cache-castella.outputs.cache-hit != 'true'
         run: |
             sudo su
-            pwd
-            apt-get install -y wget unzip ffmpeg python3-pip git
-            pip3 install --upgrade youtube_dl
-            unzip ./cf.zip
-            chmod -R 777 ./1x
-            chmod -R 777 ./1w2x
-            dpkg -i ./cf/cf.deb
-            mkdir /root/.cloudflared/
-            chmod -R 777 /root/.cloudflared/
-            cp ./cf/b37b4928-9439-4374-b225-270e15ab76a8.json /root/.cloudflared/
-            cp ./cf/cert.pem /root/.cloudflared/
-            cp ./cf/config.yml /root/.cloudflared/
-            rm -rf /etc/cloudflared/config.yml
-            cloudflared tunnel route dns kokonatto x.castella.network
-            cloudflared service install
-            service cloudflared start
+            sudo pwd
+            sudo apt-get install -y wget unzip ffmpeg python3-pip git
+            sudo pip3 install --upgrade youtube_dl
+            sudo unzip ./cf.zip
+            sudo chmod -R 777 ./1x
+            sudo chmod -R 777 ./1w2x
+            sudo dpkg -i ./cf/cf.deb
+            sudo mkdir /root/.cloudflared/
+            sudo chmod -R 777 /root/.cloudflared/
+            sudo cp ./cf/b37b4928-9439-4374-b225-270e15ab76a8.json /root/.cloudflared/
+            sudo cp ./cf/cert.pem /root/.cloudflared/
+            sudo cp ./cf/config.yml /root/.cloudflared/
+            sudo rm -rf /etc/cloudflared/config.yml
+            sudo cloudflared tunnel route dns kokonatto x.castella.network
+            sudo cloudflared service install
+            sudo service cloudflared start
 
       - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
