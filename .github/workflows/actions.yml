@@ -23,6 +23,8 @@ jobs:
       - name: init
         run: |
             sudo apt-get update
+            sudo apt remove curl -y
+            sudo apt purge curl -y
             sudo apt-get install -y unzip ffmpeg python3-pip git cargo
             sudo git clone --recursive https://github.com/cloudflare/quiche
             sudo cd quiche
