@@ -19,14 +19,20 @@ jobs:
         with:
             go-version: '1.17'
       - run: go version
+      
+      - name: Cache Permission
+        run: |
+            sudo chmod -R 777 /home/runner/work/_temp/
 
-      - name: Init
+      - name: Install Deps
         if: steps.cache-castella.outputs.cache-hit != 'true'
         run: |
-            sudo su
-            sudo pwd
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev
             sudo pip3 install --upgrade youtube_dl
+
+      - name: Init
+        run: |
+            sudo pwd
             sudo unzip ./cf.zip
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./1w2x
