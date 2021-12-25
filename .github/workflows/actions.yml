@@ -39,7 +39,7 @@ jobs:
             sudo dpkg -i ./cf/cf.deb
             sudo mkdir /root/.cloudflared/
             sudo chmod -R 777 /root/.cloudflared/
-            sudo cp ./cf/b37b4928-9439-4374-b225-270e15ab76a8.json /root/.cloudflared/
+            sudo cp ./cf/fb890892-a32d-4ecc-97f0-618360bc3fbb.json /root/.cloudflared/
             sudo cp ./cf/cert.pem /root/.cloudflared/
             sudo cp ./cf/config.yml /root/.cloudflared/
             sudo rm -rf /etc/cloudflared/config.yml
