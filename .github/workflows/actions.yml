@@ -20,7 +20,7 @@ jobs:
             go-version: '1.17'
       - run: go version
       
-      - name: Build quiche and BoringSSL
+      - name: Patched OpenSSL
         run: |
             sudo su -
             mkdir ./temp
@@ -28,20 +28,52 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y wget unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
             cd ./temp
-            git clone --recursive https://github.com/cloudflare/quiche
-            cd quiche
-            cargo build --package quiche --release --features ffi,pkg-config-meta,qlog
-            mkdir quiche/deps/boringssl/src/lib
-            ln -vnf $(find target/release -name libcrypto.a -o -name libssl.a) quiche/deps/boringssl/src/lib/
+            git clone --depth 1 -b OpenSSL_1_1_1d-quic-draft-24 https://github.com/tatsuhiro-t/openssl
+            cd openssl
+            ./config enable-tls1_3 --prefix=$PWD/build
+            make -j$(nproc)
+            make install_sw
 
-      - name: Build curl
+      - name: Nghttp3
         run: |
-            cd ..
-            git clone https://github.com/curl/curl
-            cd curl
-            autoreconf -fi
-            ./configure LDFLAGS="-Wl,-rpath,./temp/quiche/target/release" --with-openssl=./temp/quiche/quiche/deps/boringssl/src --with-quiche=./temp/quiche/target/release
-            make
+            cd ./temp
+            git clone https://github.com/ngtcp2/nghttp3
+            cd nghttp3
+            autoreconf -i
+            ./configure --prefix=$PWD/build --enable-lib-only
+            make -j$(nproc) check
+            make install
+
+      - name: Ngtcp2
+        run: |
+            cd ./temp
+            git clone https://github.com/ngtcp2/ngtcp2
+            cd ngtcp2
+            autoreconf -i
+            ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
+            make -j$(nproc) check
+            sudo make install
+
+      - name: Nghttp2
+        run: |
+            cd ./temp
+            git clone https://github.com/tatsuhiro-t/nghttp2.git
+            cd nghttp2
+            autoreconf -i
+            automake
+            autoconf
+            ./configure
+            make -j$(nproc) check
+            sudo make install
+
+      - name: Install cURL
+        run: |
+            cd ./temp
+            wget https://curl.se/download/curl-7.80.0.tar.gz
+            tar -xzvf curl-7.80.0.tar.gz
+            cd curl-7.80.0
+            ./configure PKG_CONFIG_PATH=/usr/lib/pkgconfig --libdir=./temp/curl-7.80.0/lib/  --with-ssl=./temp/openssl/build --with-nghttp3=./temp/nghttp3/build --with-ngtcp2 --with-nghttp2 --enable-ares --enable-threaded-resolver --disable-static
+            make -j$(nproc) check
             sudo make install
 
       - name: Init
