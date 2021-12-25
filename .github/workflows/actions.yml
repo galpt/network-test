@@ -23,7 +23,7 @@ jobs:
       - name: Init
         if: steps.cache-castella.outputs.cache-hit != 'true'
         run: |
-            sudo su -
+            sudo su
             pwd
             apt-get install -y wget unzip ffmpeg python3-pip git
             pip3 install --upgrade youtube_dl
