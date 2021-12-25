@@ -40,9 +40,9 @@ jobs:
             git clone https://github.com/curl/curl
             cd curl
             autoreconf -fi
-            ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" --with-openssl=$PWD/../quiche/quiche/deps/boringssl/src --with-quiche=$PWD/../quiche/target/release
+            ./configure LDFLAGS="-Wl,-rpath,./temp/quiche/target/release" --with-openssl=./temp/quiche/quiche/deps/boringssl/src --with-quiche=./temp/quiche/target/release
             make
-            make install
+            sudo make install
 
       - name: Init
         run: |
