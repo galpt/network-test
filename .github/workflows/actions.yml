@@ -32,7 +32,7 @@ jobs:
       - name: Init
         run: |
             sudo pwd
-            sudo pip3 install --upgrade youtube_dl
+            sudo python3 -m pip install -U yt-dlp
             sudo unzip ./cf.zip
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./1w2x
