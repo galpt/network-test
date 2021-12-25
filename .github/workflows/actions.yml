@@ -12,7 +12,7 @@ jobs:
         id: cache-castella
         uses: actions/cache@v2
         with:
-          path: .
+          path: $pwd
           key: ${{ runner.os }}-castella
 
       - uses: actions/setup-go@v2
@@ -51,7 +51,7 @@ jobs:
             cd ngtcp2
             autoreconf -i
             ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
-            make -j$(nproc) check
+            make -j$(nproc)
             sudo make install
 
       - name: Nghttp2
@@ -63,7 +63,7 @@ jobs:
             automake
             autoconf
             ./configure
-            make -j$(nproc) check
+            make -j$(nproc)
             sudo make install
 
       - name: Install cURL
