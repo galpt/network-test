@@ -24,8 +24,10 @@ jobs:
         run: |
             sudo apt-get update
             sudo apt-get install -y wget unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
+            sudo pwd
             sudo cd /tmp
             sudo git clone --depth 1 -b OpenSSL_1_1_1d-quic-draft-24 https://github.com/tatsuhiro-t/openssl
+            sudo pwd
             sudo cd openssl
             sudo ./config enable-tls1_3 --prefix=$PWD/build
             sudo make -j$(nproc)
@@ -33,8 +35,10 @@ jobs:
 
       - name: Nghttp3
         run: |
+            sudo pwd
             sudo cd /tmp
             sudo git clone https://github.com/ngtcp2/nghttp3
+            sudo pwd
             sudo cd nghttp3
             sudo autoreconf -i
             sudo ./configure --prefix=$PWD/build --enable-lib-only
@@ -43,8 +47,10 @@ jobs:
 
       - name: Ngtcp2
         run: |
+            sudo pwd
             sudo cd /tmp
             sudo git clone https://github.com/ngtcp2/ngtcp2
+            sudo pwd
             sudo cd ngtcp2
             sudo autoreconf -i
             sudo ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
@@ -53,8 +59,10 @@ jobs:
 
       - name: Nghttp2
         run: |
+            sudo pwd
             sudo cd /tmp
             sudo git clone https://github.com/tatsuhiro-t/nghttp2.git
+            sudo pwd
             sudo cd nghttp2
             sudo autoreconf -i
             sudo automake
@@ -65,9 +73,11 @@ jobs:
             
       - name: Install cURL
         run: |
+            sudo pwd
             sudo cd /tmp
             sudo wget https://curl.se/download/curl-7.80.0.tar.gz
             sudo tar -xzvf curl-7.80.0.tar.gz
+            sudo pwd
             sudo cd curl-7.80.0
             sudo ./configure PKG_CONFIG_PATH=/usr/lib/pkgconfig --libdir=/tmp/curl-7.80.0/lib/  --with-ssl=/tmp/openssl/build --with-nghttp3=/tmp/nghttp3/build --with-ngtcp2 --with-nghttp2 --enable-ares --enable-threaded-resolver --disable-static
             sudo make -j$(nproc) check
@@ -75,37 +85,7 @@ jobs:
 
       - name: Init
         run: |
-            sudo apt-get update
-            sudo apt-get install -y unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
-            sudo cd /tmp
-            sudo git clone --depth 1 -b OpenSSL_1_1_1d-quic-draft-24 https://github.com/tatsuhiro-t/openssl
-            sudo cd openssl
-            sudo ./config enable-tls1_3 --prefix=$PWD/build
-            sudo make -j$(nproc)
-            sudo make install_sw
-            sudo cd /tmp
-            sudo git clone https://github.com/ngtcp2/nghttp3
-            sudo cd nghttp3
-            sudo autoreconf -i
-            sudo ./configure --prefix=$PWD/build --enable-lib-only
-            sudo make -j$(nproc) check
-            sudo make install
-            sudo cd /tmp
-            sudo git clone https://github.com/ngtcp2/ngtcp2
-            sudo cd ngtcp2
-            sudo autoreconf -i
-            sudo ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
-            sudo make -j$(nproc) check
-            sudo make install
-            sudo cd /tmp
-            sudo git clone https://github.com/tatsuhiro-t/nghttp2.git
-            sudo cd nghttp2
-            sudo autoreconf -i
-            sudo automake
-            sudo autoconf
-            sudo ./configure
-            sudo make -j$(nproc) check
-            sudo make install
+            sudo pwd
             sudo pip3 install --upgrade youtube_dl
             sudo unzip ./cf.zip
             sudo chmod -R 777 ./1x
@@ -129,7 +109,9 @@ jobs:
       - name: x1
         continue-on-error: true
         timeout-minutes: 360
-        run: sudo ./1x
+        run: |
+            sudo pwd
+            sudo ./1x
 
       - name: Always Check
         if: always()
