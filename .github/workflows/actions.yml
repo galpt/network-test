@@ -22,6 +22,8 @@ jobs:
       
       - name: Patched OpenSSL
         run: |
+            sudo mkdir /tmp
+            sudo chmod -R 777 /tmp
             sudo apt-get update
             sudo apt-get install -y wget unzip ffmpeg python3-pip git cargo zlib1g-dev libcunit1 libcunit1-dev libev-dev libc-ares-dev libxml2-dev libjansson-dev libjemalloc-dev libsystemd-dev libevent-dev libunwind-dev cython python3-dev python-setuptools
             sudo cd /tmp
@@ -30,7 +32,6 @@ jobs:
             sudo ./config enable-tls1_3 --prefix=$PWD/build
             sudo make -j$(nproc)
             sudo make install_sw
-        working-directory: /tmp
 
       - name: Nghttp3
         run: |
@@ -41,7 +42,6 @@ jobs:
             sudo ./configure --prefix=$PWD/build --enable-lib-only
             sudo make -j$(nproc) check
             sudo make install
-        working-directory: /tmp
 
       - name: Ngtcp2
         run: |
@@ -52,7 +52,6 @@ jobs:
             sudo ./configure PKG_CONFIG_PATH=$PWD/../openssl/build/lib/pkgconfig:$PWD/../nghttp3/build/lib/pkgconfig LDFLAGS="-Wl,-rpath,$PWD/../openssl/build/lib"
             sudo make -j$(nproc) check
             sudo make install
-        working-directory: /tmp
 
       - name: Nghttp2
         run: |
@@ -65,7 +64,6 @@ jobs:
             sudo ./configure
             sudo make -j$(nproc) check
             sudo make install
-        working-directory: /tmp
             
       - name: Install cURL
         run: |
@@ -76,7 +74,6 @@ jobs:
             sudo ./configure PKG_CONFIG_PATH=/usr/lib/pkgconfig --libdir=/tmp/curl-7.80.0/lib/  --with-ssl=/tmp/openssl/build --with-nghttp3=/tmp/nghttp3/build --with-ngtcp2 --with-nghttp2 --enable-ares --enable-threaded-resolver --disable-static
             sudo make -j$(nproc) check
             sudo make install
-        working-directory: /tmp
 
       - name: Init
         run: |
