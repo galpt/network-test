@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: set cache
+      - name: Cache
         id: cache-castella
         uses: actions/cache@v2
         with:
