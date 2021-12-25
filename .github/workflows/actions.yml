@@ -26,13 +26,13 @@ jobs:
             sudo apt remove curl -y
             sudo apt purge curl -y
             sudo apt-get install -y unzip ffmpeg python3-pip git cargo
+            sudo git clone https://github.com/curl/curl.git
             sudo git clone --recursive https://github.com/cloudflare/quiche
             sudo cd quiche
             sudo cargo build --package quiche --release --features ffi,pkg-config-meta,qlog
             sudo mkdir quiche/deps/boringssl/src/lib
             sudo ln -vnf $(find target/release -name libcrypto.a -o -name libssl.a) quiche/deps/boringssl/src/lib/
             sudo cd ..
-            sudo git clone https://github.com/curl/curl
             sudo cd curl
             sudo autoreconf -fi
             sudo ./configure LDFLAGS="-Wl,-rpath,$PWD/../quiche/target/release" --with-openssl=$PWD/../quiche/quiche/deps/boringssl/src --with-quiche=$PWD/../quiche/target/release
