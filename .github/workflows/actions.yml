@@ -50,7 +50,7 @@ jobs:
         timeout-minutes: 360
         run: |
             pwd
-            /home/runner/work/network-test/network-test1x/1x
+            /home/runner/work/network-test/network-test/1x
 
       - name: Always Check
         if: always()
