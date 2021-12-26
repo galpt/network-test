@@ -6,7 +6,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: restart workflow
+      - name: Restart Workflow
         run: |
           URL=https://api.github.com/repos/${{github.repository}}/actions/runs/${{ github.event.client_payload.runid }}/rerun
           curl -X POST -u "weide-zhou:${{secrets.ACTIONS_PAT}}" $URL
