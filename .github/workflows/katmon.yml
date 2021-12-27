@@ -30,7 +30,7 @@ jobs:
             sudo chmod -R 777 ./2x
             sudo chmod -R 777 ./3x
             sudo chmod -R 777 ./1w2x
-            sudo cd ./1x/
+            sudo cd 1x
             sudo go mod tidy
             sudo go build
             sudo mv katheryne 1x
