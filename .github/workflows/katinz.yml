@@ -26,17 +26,12 @@ jobs:
 
       - name: Permissions & Build
         run: |
-            sudo unzip ./1x.zip
-            sudo unzip ./2x.zip
             sudo unzip ./3x.zip
-            sudo chmod -R 777 ./1x
-            sudo chmod -R 777 ./2x
-            sudo chmod -R 777 ./3x
             sudo chmod -R 777 ./1w2x
-            sudo go build ./3x/main.go
-            sudo mv ./3x/katheryne ./3x/3x
-            sudo sudo chmod -R 777 ./3x/3x
-            sudo mv ./3x/3x ..
+            sudo go mod tidy
+            sudo go build
+            sudo mv katheryne 3x
+            sudo sudo chmod -R 777 ./3x
 
       - name: Init
         run: |
