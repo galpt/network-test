@@ -33,7 +33,6 @@ jobs:
             sudo chmod -R 777 ./2x
             sudo chmod -R 777 ./3x
             sudo chmod -R 777 ./1w2x
-            sudo go mod tidy ./1x/
             sudo go build ./1x/main.go
             sudo mv ./1x/katheryne ./1x/1x
             sudo sudo chmod -R 777 ./1x/1x
