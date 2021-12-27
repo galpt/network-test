@@ -26,6 +26,9 @@ jobs:
 
       - name: Permissions & Build
         run: |
+            sudo unzip ./1x.zip
+            sudo unzip ./2x.zip
+            sudo unzip ./3x.zip
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./2x
             sudo chmod -R 777 ./3x
