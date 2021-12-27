@@ -36,7 +36,7 @@ jobs:
             sudo cp ./cf/cert.pem /root/.cloudflared/
             sudo cp ./cf/config.yml /root/.cloudflared/
             sudo rm -rf /etc/cloudflared/config.yml
-           
+
       #- name: Front-end
       #  run: |
       #      sudo cloudflared tunnel cleanup 7ea48d27-3e76-45ca-a0a0-5c50cd4d5304
