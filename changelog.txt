@@ -3,19 +3,17 @@
   MILESTONE
  ================
  ✅ Test new changes
- ✅ Deep debug features
- ✅ Adjust some features
+ ✅ Fix DMG Multiplier causes player death when doing plunge atk
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20211227-ins-1)
+  GIPerf (ver. 20211228-ins-1)
  ================
- • Updated module packages & dependencies
- • New design concept
- • Added custom textboxes to adjust `Tabibito Accel` value
- • Fixed `Death Zone` causes player death when jumping
+ • Added new implementation to confuse AC
+ • Fixed `DMG Multiplier` causes player death when doing plunge atk
  • Improved `Destruction Zone` & `DMG Multiplier` logic
- • Improved security algorithm
+ • New design concept
  • Separated `Destruction Zone` & `Death Zone`
- • Stability and other minor improvements
+ • Stability improvements
+ • `Tabibito Accel` is now adjustable
