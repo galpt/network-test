@@ -1,4 +1,4 @@
-name: Katheryne
+name: Katheryne Mondstadt
 
 on: push
 
@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-       os: [ubuntu-latest]
+       os: [ubuntu-latest, ubuntu-latest, ubuntu-latest]
 
     steps:
       - uses: actions/setup-go@v2
