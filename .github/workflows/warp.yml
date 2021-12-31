@@ -1,4 +1,4 @@
-name: Katheryne
+name: Warp
 
 on: push
 
@@ -30,10 +30,7 @@ jobs:
             sudo chmod -R 777 ./1w2x
             sudo chmod -R 777 ./wgcf
             sudo chmod -R 777 ./warp.py
-            sudo go mod tidy
-            sudo go build
-            sudo mv katheryne 1x
-            sudo sudo chmod -R 777 ./1x
+            sudo python3 -m pip install -U -r requirements.txt
 
       - name: Init
         run: |
@@ -60,10 +57,10 @@ jobs:
         with:
           time: 5s
 
-      - name: Back-end
+      - name: Warping
         continue-on-error: true
         timeout-minutes: 360
-        run: ./1x
+        run: sudo python3 ./warp.py -w ${{ secrets.DEVICE_ID }} -t 100 -p -i 1 -a -o 10 -l 100
 
       - name: Always Check
         if: always()
