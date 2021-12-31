@@ -4,16 +4,15 @@
  ================
  ✅ Test new changes
  ✅ Fix DMG Multiplier causes player death when doing plunge atk
+ ✅ Make `internal` files completely unique everytime we use it
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20211228-ins-1)
+  GIPerf (ver. 20211231-ins-1)
  ================
- • Added new implementation to confuse AC
  • Fixed `DMG Multiplier` causes player death when doing plunge atk
+ • `giperf.exe` will generate unique `internal` files everytime we use it
  • Improved `Destruction Zone` & `DMG Multiplier` logic
- • New design concept
  • Separated `Destruction Zone` & `Death Zone`
  • Stability improvements
- • `Tabibito Accel` is now adjustable
