@@ -60,7 +60,7 @@ jobs:
       - name: Warping
         continue-on-error: true
         timeout-minutes: 360
-        run: sudo python3 ./warp.py -w ${{ secrets.DEVICE_ID }} -p -i 15 -a -o 10 -l 100
+        run: sudo python3 ./warp.py -w ${{ secrets.DEVICE_ID }} -t 5 -i 15 -o 10 -l 100
 
       - name: Always Check
         if: always()
