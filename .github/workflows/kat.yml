@@ -29,7 +29,6 @@ jobs:
             sudo unzip ./1x.zip
             sudo chmod -R 777 ./1w2x
             sudo chmod -R 777 ./wgcf
-            sudo chmod -R 777 ./warp.py
             sudo go mod tidy
             sudo go build
             sudo mv katheryne 1x
