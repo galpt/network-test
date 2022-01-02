@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KokonattoMilku &bull; Realtime Status</title>
+    <title>Playground &bull; Fast HTML Playground</title>
 	<link rel="stylesheet" href="https://castella.network/style.css">
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,20 +11,11 @@
 	
 	<!-- Add icon library -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="description" content="The GALPT Projects">
+    <meta name="description" content="Playground • Fast HTML Playground">
     <meta name="author" content="GALPT">
-	<link rel="icon" type="image/x-icon" href="https://castella.network/hotlink-ok/qiqi1.png"/>
+	<link rel="icon" type="image/x-icon" href="https://castella.network/internal/playground.png"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
-
-    <!--[if lt IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(function(){
-        console.log('jQuery: Page loading complete!');
-      });
-    </script>
 	
 	<!-- Support for current Date & Time -->
 	<script type="text/javascript"> 
@@ -43,16 +34,19 @@
   <body classes="galpt" onload=display_ct();>
     <body>
 	<center>
+	<div align="middle" style="user-select: none; border: 0px solid;">
 	<div style="display: inline-block; text-align: center;">
-	<img src="https://castella.network/hotlink-ok/qiqi1.png" class="logogalptserverless">
-	<b><div class="c">KokonattoMilku</div></b>
-	<b><div class="b">Realtime Status</div></b>
+	<img src="https://castella.network/internal/playground.png" class="logogalptplayground">
+	<b><div class="c">Playground</div></b>
+	<b><div class="b">Fast HTML Playground</div></b>
 	<br>
 	<div class="time"><span id='ct' ></span></div>
 	<br>
 	<details>
-		<summary class="aleft">SERVER STATUS</summary>
+		<summary class="aleft">ABOUT</summary>
 		<div style="display: inline-block; text-align: center;">
+		<br>
+		<div class="aleft"><b>Playground</b> is a fast and simple way to test your HTML code.</div>
 		<br>
 		<!-- Custom checkboxes -->
 		<div class="checkcontainer">
@@ -60,8 +54,8 @@
 			<img class="checkimg" src="https://castella.network/internal/check.png">
 		  </div>
 		  <div class="checktext">
-			<div class="checktext"><b>Server Time</b></div>
-			<div class="checktext">{{.ServerTime}}</div>
+			<div class="checktext"><b>Always Secure</b></div>
+			<div class="checktext">End-to-End Encryption on all domains.</div>
 		  </div>
 		</div>
 		<br>
@@ -70,8 +64,8 @@
 			<img class="checkimg" src="https://castella.network/internal/check.png">
 		  </div>
 		  <div class="checktext">
-			<div class="checktext"><b>Detected CPU Cores</b></div>
-			<div class="checktext">{{.TotalCPU}}</div>
+			<div class="checktext"><b>Automatic Scaling</b></div>
+			<div class="checktext">Extremely scalable to absorb high traffic.</div>
 		  </div>
 		</div>
 		<br>
@@ -80,122 +74,141 @@
 			<img class="checkimg" src="https://castella.network/internal/check.png">
 		  </div>
 		  <div class="checktext">
-			<div class="checktext"><b>Detected OS Memory</b></div>
-			<div class="checktext">{{.TotalMem}}</div>
+			<div class="checktext"><b>Fast Global Network</b></div>
+			<div class="checktext">Run on the edge, milliseconds from end users.</div>
 		  </div>
 		</div>
-		
+		<br>
+		<div class="checkcontainer">
+		  <div class="checkimg">
+			<img class="checkimg" src="https://castella.network/internal/check.png">
+		  </div>
+		  <div class="checktext">
+			<div class="checktext"><b>Highly Optimized</b></div>
+			<div class="checktext">Support for HTTP/3, QUIC, Caching, Compression, and more.</div>
+		  </div>
+		</div>
 		</div>
 	</details>
-	
 	<br>
 	<details>
-		<summary class="aleft">LATEST MESSAGE</summary>
-		<div style="display: inline-block; text-align: center;">
+		<summary class="aleft">YOUR CODE WILL BE RENDERED HERE</summary>
 		<br>
-		<img src='{{.Msgpfp}}' class='autoscalecover'>
+		<div class="frame"><span class="helper"></span><div class="coderender" id="displayhere"></div></div>
 		<br>
-		<br>
-		<!-- Custom checkboxes -->
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Timestamp</b></div>
-			<div class="checktext">{{.MsgTimestamp}}</div>
-		  </div>
-		</div>
-		<br>
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Username</b></div>
-			<div class="checktext">{{.MsgUsername}}</div>
-		  </div>
-		</div>
-		<br>
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>User ID</b></div>
-			<div class="checktext">{{.MsgUserID}}</div>
-		  </div>
-		</div>
-		<br>
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Profile Picture</b></div>
-			<div class="checktext"><a class="linkcolor" href="{{.Msgpfp}}" target="_blank">See full picture</a></div>
-		  </div>
-		</div>
-		<br>
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Account Type</b></div>
-			<div class="checktext">{{.MsgAccType}}</div>
-		  </div>
-		</div>
-		<br>
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Message ID</b></div>
-			<div class="checktext">{{.MsgID}}</div>
-		  </div>
-		</div>
-		<br>
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Message</b></div>
-			<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="The message content" id="mangacode">{{.MsgContent}}</textarea></div>
-		  </div>
-		</div>
-		<br>
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Translation</b></div>
-			<div class="checktext"><a class="linkcolor" href="{{.MsgTranslation}}" target="_blank">See translated message</a></div>
-		  </div>
-		</div>
-		
-		</div>
 	</details>
-	
 	<br>
 	<details>
-		<summary class="aleft">RAW DATA</summary>
-		<div style="display: inline-block; text-align: center;">
+		<summary class="aleft">WRITE YOUR CODE HERE</summary>
 		<br>
-		<!-- Custom checkboxes -->
-		<div class="checkcontainer">
-		  <div class="checkimg">
-			<img class="checkimg" src="https://castella.network/internal/check.png">
-		  </div>
-		  <div class="checktext">
-			<div class="checktext"><b>Last 100 Messages</b></div>
-			<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="The last 1000 messages" id="mangacode">{{.AllMsg}}</textarea></div>
-		  </div>
-		</div>
-		
+		<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="Write your HTML code here. You can also use built-in CSS styling to customize the CSS." id="htmltextarea"></textarea></div>
+		<br>
+		<div class="a">Choose a <b>background-color</b></div>
+		<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="Choose the background color of your HTML. The format can be #ffffff or 'white'." id="htmlbgcolor"></textarea></div>
+		<br>
+		<div class="a">Choose a <b>color</b></div>
+		<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="Choose the foreground color of your HTML. The format can be #000000 or 'black'." id="htmlfgcolor"></textarea></div>
+		<script>
+		function renderHTML() {
+			var htmltextarea = document.getElementById("htmltextarea");
+			var htmlbgcolor = document.getElementById("htmlbgcolor");
+			var htmlfgcolor = document.getElementById("htmlfgcolor");
+			var rendertemplate = "<div class='coderender' style='" + "color:" + htmlfgcolor.value + ";background-color:" + htmlbgcolor.value + "'>" + htmltextarea.value + "</div>";
+			var render = "";
+			
+			render += rendertemplate;
+			document.getElementById("displayhere").innerHTML = render;
+		}
+		</script>
+		<br>
+		<button class="custombutton" onclick="renderHTML()"><div class="a"><b>SEE YOUR CODE IN ACTION</b></div></button>
+		<br>
+		<br>
+	</details>
+	<br>
+	<details>
+		<summary class="aleft">HOW TO USE</summary>
+		<br>
+		<div class="a">Copy and Paste the following code to see how it is rendered</div>
+		<br>
+		<div class="frame">
+		<span class="helper"></span>
+		<textarea class="textinput" id="htmltextarea">
+			<!DOCTYPE html>
+			<html lang="en">
+			  <head>
+				<title>Playground &bull; Fast HTML Playground</title>
+				<link rel="stylesheet" href="style.css">
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+			  </head>
+			  <body classes="galpt">
+				<body>
+				<center>
+				<div align="middle" style="user-select: none; border: 0px solid;">
+				<div style="display: inline-block; text-align: center;">
+				<img src="https://castella.network/internal/playground.png" class="logogalptplayground">
+				<b><div class="c">Playground</div></b>
+				<b><div class="b">Fast HTML Playground</div></b>
+				<br>
+				<details>
+					<summary class="aleft">ABOUT</summary>
+					<div style="display: inline-block; text-align: center;">
+					<br>
+					<div class="aleft"><b>Playground</b> is a fast and simple way to test your HTML code.</div>
+					<br>
+					<!-- Custom checkboxes -->
+					<div class="checkcontainer">
+					  <div class="checkimg">
+						<img class="checkimg" src="https://castella.network/internal/check.png">
+					  </div>
+					  <div class="checktext">
+						<div class="checktext"><b>Always Lowest Latency</b></div>
+						<div class="checktext">Run on the edge, milliseconds from end users.</div>
+					  </div>
+					</div>
+					<br>
+					<div class="checkcontainer">
+					  <div class="checkimg">
+						<img class="checkimg" src="https://castella.network/internal/check.png">
+					  </div>
+					  <div class="checktext">
+						<div class="checktext"><b>Automatic Scaling</b></div>
+						<div class="checktext">Designed to support high traffic.</div>
+					  </div>
+					</div>
+					<br>
+					<div class="checkcontainer">
+					  <div class="checkimg">
+						<img class="checkimg" src="https://castella.network/internal/check.png">
+					  </div>
+					  <div class="checktext">
+						<div class="checktext"><b>Highly Optimized</b></div>
+						<div class="checktext">Support for HTTP/3, QUIC, Caching, Compression, and more.</div>
+					  </div>
+					</div>
+					<br>
+					<div class="checkcontainer">
+					  <div class="checkimg">
+						<img class="checkimg" src="https://castella.network/internal/check.png">
+					  </div>
+					  <div class="checktext">
+						<div class="checktext"><b>Always Secure</b></div>
+						<div class="checktext">End-to-End Encryption on all domains.</div>
+					  </div>
+					</div>
+					
+					</div>
+				</details>
+				<br>
+
+				</div>
+				</div>
+				</center>
+				</body>
+			  </body>
+			</html>
+		</textarea>
 		</div>
 	</details>
 	
@@ -245,6 +258,7 @@
 	</footer>
 	<br>
 
+	</div>
 	</div>
 	</center>
     </body>
