@@ -5,14 +5,14 @@
  ✅ Test new changes
  ✅ Fix DMG Multiplier causes player death when doing plunge atk
  ✅ Make `internal` files completely unique everytime we use it
+ ✅ Implement anomaly check bypasser test #1
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20211231-ins-1)
+  GIPerf (ver. 20220102-ins-1)
  ================
  • Fixed `DMG Multiplier` causes player death when doing plunge atk
  • `giperf.exe` will generate unique `internal` files everytime we use it
- • Improved `Destruction Zone` & `DMG Multiplier` logic
- • Separated `Destruction Zone` & `Death Zone`
+ • Implemented anomaly check bypasser test #1
  • Stability improvements
