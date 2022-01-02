@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page Not Found</title>
+	<link rel="stylesheet" href="https://castella.network/style.css">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Support for Cloudflare compression -->
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	
+	<!-- Add icon library -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="description" content="(404) Page Not Found">
+    <meta name="author" content="GALPT">
+	<link rel="icon" type="image/png" href="https://castella.network/internal/serverless.png"/>
+
+    <!--[if lt IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        console.log('jQuery: Page loading complete!');
+      });
+    </script>
+	
+	<!-- Support for current Date & Time -->
+	<script type="text/javascript"> 
+	function display_c(){
+		var refresh=1000; // Refresh rate in milli seconds
+		mytime=setTimeout('display_ct()',refresh)
+	}
+
+	function display_ct() {
+		var x = new Date()
+		document.getElementById('ct').innerHTML = x;
+		display_c();
+	 }
+	</script>
+  </head>
+  <body classes="galpt" onload=display_ct();>
+    <body>
+	<center>
+	<div align="middle" style="user-select: none; border: 0px solid;">
+	<div style="display: inline-block; text-align: center;">
+	<img src="https://castella.network/internal/serverless.png" class="logogalptserverless">
+	<br>
+	<div class="notfoundheader">404</div>
+	<div class="notfoundtext">PAGE NOT FOUND</div>
+	<br>
+	<div class="time"><span id='ct' ></span></div>
+	
+	<footer>
+	<div style="display: inline-block; text-align: center;">
+	<br>
+	<details>
+		<summary class="note">Translate</summary>
+		<!-- Google Web Translator -->
+		<div id="google_translate_element"></div>
+
+		<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({pageLanguage: 'id'}, 'google_translate_element');
+		}
+		</script>
+
+		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	</details>
+	
+	<!-- Back to Top Button -->
+	<script type="text/javascript">
+	/*Scroll to top when arrow up clicked BEGIN*/
+	$(window).scroll(function() {
+		var height = $(window).scrollTop();
+		if (height > 100) {
+			$('#back2Top').fadeIn();
+		} else {
+			$('#back2Top').fadeOut();
+		}
+	});
+	$(document).ready(function() {
+		$("#back2Top").click(function(event) {
+			event.preventDefault();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+			return false;
+		});
+
+	});
+	/*Scroll to top when arrow up clicked END*/
+	</script>
+	<a id="back2Top" title="Back to top" href="#">&#10148;</a>
+	
+	<br>
+	<div class="note">&copy; <script>document.write(new Date().getFullYear())</script> <a class="linkcolor" href="https://www.castella.network/">Castella</a></div>
+	</div>
+	</footer>
+	<br>
+
+	</div>
+	</div>
+	</center>
+    </body>
+  </body>
+</html>
