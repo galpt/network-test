@@ -40,7 +40,7 @@ jobs:
       - run: |
             go version
             sudo mv katheryne 1x
-            sudo sudo chmod -R 777 ./1x
+            sudo chmod -R 777 ./1x
 
       - name: Init
         run: |
