@@ -21,6 +21,10 @@ jobs:
       - name: Install Deps
         run: |
             sudo apt-get update
+            sudo sysctl -w net.core.default_qdisc=fq
+            sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
+            sudo sysctl -w net.ipv4.tcp_window_scaling=1
+            sudo sysctl -p
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev
             sudo python3 -m pip install -U yt-dlp
 
@@ -36,10 +40,6 @@ jobs:
 
       - name: Init
         run: |
-            sudo sysctl -w net.core.default_qdisc=fq
-            sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
-            sudo sysctl -w net.ipv4.tcp_window_scaling = 1
-            sudo sysctl -p
             sudo pwd
             sudo unzip ./cf.zip
             sudo dpkg -i ./cf/cf.deb
