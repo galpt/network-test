@@ -11,20 +11,23 @@ jobs:
        os: [ubuntu-latest]
 
     steps:
+      - uses: actions/checkout@v2
+      
       - uses: actions/setup-go@v2
         with:
             go-version: '^1.17.5'
       - run: go version
       
-      - uses: actions/checkout@v2
-
-      - name: Install Deps
+      - name: Optimise Network Settings
         run: |
-            sudo apt-get update
             sudo sysctl -w net.core.default_qdisc=fq
             sudo sysctl -w net.ipv4.tcp_congestion_control=bbr
             sudo sysctl -w net.ipv4.tcp_window_scaling=1
             sudo sysctl -p
+
+      - name: Install Deps
+        run: |
+            sudo apt-get update
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev
             sudo python3 -m pip install -U yt-dlp
 
