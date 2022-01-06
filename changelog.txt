@@ -6,6 +6,7 @@
  ✅ Add support for 2.4 game update
  ✅ Make `internal` files completely unique everytime we use it
  ✅ Implement anomaly check bypass
+ ✅ Fix compiler bug
 
  ================
   CHANGELOG
@@ -14,6 +15,7 @@
  ================
  • Updated module packages & dependencies
  • Added support for 2.4 game update
+ • Fixed compiler bug
  • Implemented anomaly check bypass
  • New design concept
  • Stability improvements
