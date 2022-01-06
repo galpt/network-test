@@ -3,16 +3,17 @@
   MILESTONE
  ================
  ✅ Test new changes
- ✅ Fix DMG Multiplier causes player death when doing plunge atk
+ ✅ Add support for 2.4 game update
  ✅ Make `internal` files completely unique everytime we use it
- ✅ Implement anomaly check bypasser test #1
+ ✅ Implement anomaly check bypass
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20220102-ins-1)
+  GIPerf (ver. 20220106-ins-1)
  ================
- • Fixed `DMG Multiplier` causes player death when doing plunge atk
- • `giperf.exe` will generate unique `internal` files everytime we use it
- • Implemented anomaly check bypasser test #1
+ • Updated module packages & dependencies
+ • Added support for 2.4 game update
+ • Implemented anomaly check bypass
+ • New design concept
  • Stability improvements
