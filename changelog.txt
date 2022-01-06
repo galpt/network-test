@@ -11,7 +11,7 @@
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20220106-ins-1)
+  GIPerf (ver. 20220106-ins-2)
  ================
  • Updated module packages & dependencies
  • Added support for 2.4 game update
