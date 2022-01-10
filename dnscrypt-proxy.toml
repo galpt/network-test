@@ -29,7 +29,7 @@
 ##
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
-server_names = ['castella-1', 'castella-2', 'castella-3', 'galpt-1', 'galpt-2', 'galpt-3']
+server_names = ['castella-1', 'cloudflare-security-ipv6', 'google', 'google-ipv6', 'quad9-doh-ip4-port443-filter-pri', 'quad9-doh-ip6-port443-filter-pri', 'alidns-doh']
 
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
@@ -112,12 +112,12 @@ force_tcp = false
 ## increase this. Startup may be slower if you do so.
 ## Don't increase it too much. 10000 is the highest reasonable value.
 
-timeout = 10000
+timeout = 5000
 
 
 ## Keepalive for HTTP (HTTPS, HTTP/2) queries, in seconds
 
-keepalive = 10
+keepalive = 30
 
 
 ## Add EDNS-client-subnet information to outgoing queries
@@ -140,7 +140,7 @@ blocked_query_response = 'hinfo'
 ## Randomly choose 1 of the fastest 2, half, n, 1 or all live servers by latency.
 ## The response quality still depends on the server itself.
 
-lb_strategy = 'p2'
+lb_strategy = 'ph'
 
 ## Set to `true` to constantly try to estimate the latency of all the resolvers
 ## and adjust the load-balancing parameters accordingly, or to `false` to disable.
@@ -223,13 +223,13 @@ tls_disable_session_tickets = false
 ## DoH, fallback resolvers should ideally be operated by a different entity than
 ## the DoH servers you will be using, especially if you have IPv6 enabled.
 ##
-## People in China may need to use 114.114.114.114:53 here.
+## People in China may need to use 114.114.114.114:53 or 223.5.5.5:53 here.
 ## Other popular options include 8.8.8.8 (Google),
 ## 9.9.9.9 (Quad9) and 1.1.1.1 (Cloudflare).
 ##
 ## If more than one resolver is specified, they will be tried in sequence.
 
-bootstrap_resolvers = ['1.1.1.1:53']
+bootstrap_resolvers = ['1.1.1.1:53', '223.5.5.5:53', '8.8.8.8:53', '9.9.9.9:53']
 
 
 ## Always use the fallback resolver before the system DNS settings.
