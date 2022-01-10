@@ -4,19 +4,17 @@
  ================
  ✅ Test new changes
  ✅ Improve `internal` files unique bytes generation
- ✅ Add more anomaly bypasses
- ✅ Fix some GUI-related issues
- ✅ Fix `Rapid Fire` & `DMG Multiplier`
+ ✅ Improve `Destruction Zone`
+ ✅ Implement a quickfix for `DMG Multiplier`
+ 
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20220109-ins-1)
+  GIPerf (ver. 20220111-ins-3)
  ================
  • Added more anomaly bypasses
  • Added support for Go 1.17.6
- • Fixed some GUI-related issues
- • Fixed `Rapid Fire` & `DMG Multiplier`
- • GIPerf now supports 80000+ combinations of unique bytes
- • Implemented anomaly check bypass
+ • Improved `Destruction Zone`
+ • Implemented a quickfix for `DMG Multiplier`
  • Stability improvements
