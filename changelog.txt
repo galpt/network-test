@@ -3,18 +3,19 @@
   MILESTONE
  ================
  ✅ Test new changes
- ✅ Improve `internal` files unique bytes generation
- ✅ Improve `Destruction Zone`
- ✅ Implement a quickfix for `DMG Multiplier`
+ ✅ Add config support for `giperf.exe`
+ ✅ Add new features
+ ✅ Add alternative hotkeys for `Death Zone`, `Destruction Zone` & `Rapid Fire`
+ ✅ Separate ESP from `Practical Mode`
  
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20220111-ins-3)
+  GIPerf (ver. 20220114-ins-1)
  ================
- • Added more anomaly bypasses
- • Added support for Go 1.17.6
- • Improved `Destruction Zone`
- • Implemented a quickfix for `DMG Multiplier`
+ • Added `Unknown Stats` feature
+ • Added config support for `giperf.exe`
+ • Added alternative hotkeys for `Death Zone`, `Destruction Zone` & `Rapid Fire`
+ • Separated ESP from `Practical Mode`
  • Stability improvements
