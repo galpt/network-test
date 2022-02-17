@@ -25,8 +25,14 @@ jobs:
       - name: Install Deps
         run: |
             sudo apt-get update
-            sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev
+            sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev build-essential
             sudo python3 -m pip install -U yt-dlp
+
+      - name: Build Test
+        run: |
+            cd mhynot2/minhook
+            sudo CROSS_PREFIX=x86_64-w64-mingw32- make -f build/MinGW/Makefile
+            mkdir build && cd build && cmake .. && make -j256    
 
       - name: Set Permissions
         run: |
