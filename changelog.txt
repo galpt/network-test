@@ -3,19 +3,19 @@
   MILESTONE
  ================
  ✅ Test new changes
- ✅ Add config support for `giperf.exe`
- ✅ Add new features
- ✅ Add alternative hotkeys for `Death Zone`, `Destruction Zone` & `Rapid Fire`
- ✅ Separate ESP from `Practical Mode`
+ ✅ Add new feature
+ ✅ Add support for 2.5 game update
+ ✅ Remove SHIFT hotkeys
  
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20220114-ins-1)
+  GIPerf (ver. 20220217-ins-2)
  ================
- • Added `Unknown Stats` feature
- • Added config support for `giperf.exe`
- • Added alternative hotkeys for `Death Zone`, `Destruction Zone` & `Rapid Fire`
- • Separated ESP from `Practical Mode`
+ • Added support for Go 1.17.7
+ • Added support for 2.5 game update
+ • Added `Castella Check` feature
+ • Removed SHIFT hotkeys
+ • Updated deps
  • Stability improvements
