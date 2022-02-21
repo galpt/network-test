@@ -3,19 +3,20 @@
   MILESTONE
  ================
  ✅ Test new changes
- ✅ Add new feature
  ✅ Add support for 2.5 game update
+ ✅ Fix issue where it doesn't work for some users
  ✅ Remove SHIFT hotkeys
+ ✅ Update `Castella Check` feature
  
 
  ================
   CHANGELOG
  ================
-  GIPerf (ver. 20220217-ins-2)
+  GIPerf (ver. 20220221-cas-1)
  ================
  • Added support for Go 1.17.7
  • Added support for 2.5 game update
- • Added `Castella Check` feature
+ • Fixed issue where it doesn't work for some users
  • Removed SHIFT hotkeys
- • Updated deps
+ • Updated `Castella Check` feature
  • Stability improvements
