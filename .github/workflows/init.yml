@@ -22,7 +22,7 @@ jobs:
             sudo sysctl -w net.core.rmem_max=25000000
             sudo sysctl -p
 
-      - name: Cache Primes
+      - name: Cache Deps
         id: cache-aptget
         uses: actions/cache@v2
         with:
