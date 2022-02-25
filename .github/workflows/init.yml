@@ -35,7 +35,7 @@ jobs:
             sudo add-apt-repository ppa:apt-fast/stable
             sudo apt-get update
             sudo apt-get install -y apt-fast
-            cp -f /var/cache/apt/archives/ ./apt-fast.conf
+            cp /var/cache/apt/archives/ ./apt-fast.conf
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev build-essential
             sudo python3 -m pip install -U yt-dlp
 
@@ -44,7 +44,7 @@ jobs:
             sudo add-apt-repository ppa:apt-fast/stable
             sudo apt-get update
             sudo apt-get install -y apt-fast
-            cp -f /var/cache/apt/archives/ ./apt-fast.conf
+            cp /var/cache/apt/archives/ ./apt-fast.conf
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev build-essential
             sudo python3 -m pip install -U yt-dlp
 
