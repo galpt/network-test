@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /var/cache/apt/archives/
-          key: ${{ runner.os }}-aptgetcache-${{ steps.get-date.outputs.date }}-${{ hashFiles('**/lockfiles') }}
+          key: ${{ runner.os }}-aptgetcache-${{ steps.get-date.outputs.date }}
 
       - name: Install Deps
         if: steps.cache-aptget.outputs.cache-hit != 'true'
