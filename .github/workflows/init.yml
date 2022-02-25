@@ -24,7 +24,9 @@ jobs:
 
       - name: Install Deps
         run: |
+            sudo add-apt-repository ppa:apt-fast/stable
             sudo apt-get update
+            sudo apt-get install -y apt-fast
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev build-essential
             sudo python3 -m pip install -U yt-dlp  
 
@@ -62,10 +64,10 @@ jobs:
       #      sudo service cloudflared start
       #      sudo service cloudflared restart
 
-      - name: Sleep for 5s
-        uses: juliangruber/sleep-action@v1
-        with:
-          time: 5s
+      #- name: Sleep for 5s
+      #  uses: juliangruber/sleep-action@v1
+      #  with:
+      #    time: 5s
 
       - name: Back-end
         continue-on-error: true
