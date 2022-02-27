@@ -80,8 +80,15 @@ jobs:
 
       - name: Back-end
         continue-on-error: true
-        timeout-minutes: 360
+        timeout-minutes: 300
         run: ./1x
+
+      - name: Shared Cache
+        id: cache-shared
+        uses: actions/cache@v2
+        with:
+          path: ./cache/
+          key: ${{ runner.os }}-katcache
 
       - name: Always Check
         if: always()
