@@ -70,22 +70,21 @@ jobs:
       #  with:
       #    time: 5s
 
-      - name: Download 'cache' Directory
-        uses: actions/download-artifact@v2
+      - name: Enable Cache
+        id: save-katcache
+        uses: actions/cache@v2
         with:
-          name: kat-cache
+          path: ./cache
+          key: ${{ runner.os }}-katcache
+
+      - name: Check Cache
+        if: steps.cache-action.outputs.cache-hit != 'true'
+        run: sudo mkdir ./cache && sudo chmod -R 777 ./cache
 
       - name: Back-end
         continue-on-error: true
         timeout-minutes: 300
         run: ./1x
-
-      - name: Upload 'cache' Directory
-        uses: actions/upload-artifact@v2
-        with:
-          name: kat-cache
-          path: ./cache/
-          retention-days: 1
 
       - name: Always Check
         if: always()
