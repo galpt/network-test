@@ -70,20 +70,9 @@ jobs:
       #  with:
       #    time: 5s
 
-      - name: Enable Cache
-        id: save-katcache
-        uses: actions/cache@v2
-        with:
-          path: ./cache
-          key: ${{ runner.os }}-katcache
-
-      - name: Check Cache
-        if: steps.cache-action.outputs.cache-hit != 'true'
-        run: sudo mkdir ./cache && sudo chmod -R 777 ./cache
-
       - name: Back-end
         continue-on-error: true
-        timeout-minutes: 360
+        timeout-minutes: 300
         run: ./1x
 
       - name: Always Check
