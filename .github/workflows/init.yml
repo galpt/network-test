@@ -65,14 +65,14 @@ jobs:
       #      sudo service cloudflared start
       #      sudo service cloudflared restart
 
-      #- name: Sleep for 5s
-      #  uses: juliangruber/sleep-action@v1
-      #  with:
-      #    time: 5s
+      - name: Sleep for 5s
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 5s
 
       - name: Back-end
         continue-on-error: true
-        timeout-minutes: 300
+        timeout-minutes: 360
         run: ./1x
 
       - name: Always Check
