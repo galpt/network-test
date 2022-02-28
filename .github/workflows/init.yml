@@ -75,12 +75,12 @@ jobs:
         timeout-minutes: 300
         run: ./1x
 
-      - name: Shared Cache
-        id: cache-shared
-        uses: actions/cache@v2
+      - name: Save Artifact
+        uses: actions/upload-artifact@v2
         with:
+          name: Save 'cache' directory
           path: ./cache/
-          key: ${{ runner.os }}-katcache
+          retention-days: 1
 
       - name: Always Check
         if: always()
