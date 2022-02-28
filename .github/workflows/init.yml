@@ -75,10 +75,10 @@ jobs:
         timeout-minutes: 300
         run: ./1x
 
-      - name: Save Artifact
+      - name: Save 'cache' Directory
         uses: actions/upload-artifact@v2
         with:
-          name: Save 'cache' directory
+          name: kat-cache
           path: ./cache/
           retention-days: 1
 
