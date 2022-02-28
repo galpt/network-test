@@ -22,15 +22,7 @@ jobs:
             sudo sysctl -w net.core.rmem_max=25000000
             sudo sysctl -p
 
-      - name: Cache Deps
-        id: cache-aptget
-        uses: actions/cache@v2
-        with:
-          path: /var/cache/apt/archives/
-          key: ${{ runner.os }}-aptgetcache
-
       - name: Install Deps
-        if: steps.cache-aptget.outputs.cache-hit != 'true'
         run: |
             sudo add-apt-repository ppa:apt-fast/stable
             sudo apt-get update
