@@ -47,6 +47,8 @@ jobs:
             sudo chmod -R 777 ./resrgan/resrgan
             sudo mkdir ./cache/
             sudo chmod -R 777 ./cache/
+            sudo mkdir ./img/
+            sudo chmod -R 777 ./img/
 
       - name: Init
         run: |
