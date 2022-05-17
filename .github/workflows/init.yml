@@ -45,6 +45,8 @@ jobs:
             sudo mv katheryne 1x
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./resrgan/resrgan
+            sudo mkdir ./cache/
+            sudo chmod -R 777 ./cache/
 
       - name: Init
         run: |
