@@ -65,10 +65,10 @@ jobs:
             sudo cloudflared tunnel route dns 2ff8bbb1-43db-48fb-996c-469104621104 cdn.castella.network
             sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 &
 
-      - name: Sleep for 10s
+      - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
         with:
-          time: 10s
+          time: 5s
 
       - name: Back-end
         continue-on-error: true
