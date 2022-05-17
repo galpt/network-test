@@ -60,7 +60,6 @@ jobs:
       - name: Front-end (start cf)
         run: |
             sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
-      #      sudo cloudflared tunnel route dns 2ff8bbb1-43db-48fb-996c-469104621104 cdn.castella.network
             sudo cloudflared service install
             sudo service cloudflared start
             sudo service cloudflared restart
