@@ -27,9 +27,12 @@ jobs:
       - name: Install Deps
         run: |
             sudo add-apt-repository ppa:apt-fast/stable
+            sudo apt-get clean all
             sudo apt-get update
-            sudo apt-get upgrade -y
             sudo apt-get install -y apt-fast
+            sudo apt-get upgrade -y
+            sudo apt-get dist-upgrade
+            sudo dpkg -l | grep ^..r | apt-get purge
             sudo cp -f ./apt-fast.conf /var/cache/apt/archives/
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev
             sudo python3 -m pip install -U yt-dlp
