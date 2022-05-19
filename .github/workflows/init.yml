@@ -28,6 +28,7 @@ jobs:
         run: |
             sudo add-apt-repository ppa:apt-fast/stable
             sudo apt-get update
+            sudo apt-get upgrade -y
             sudo apt-get install -y apt-fast
             sudo cp -f ./apt-fast.conf /var/cache/apt/archives/
             sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev
@@ -38,12 +39,6 @@ jobs:
             sudo unzip ./1x.zip
             sudo chmod -R 777 ./1w2x
             sudo chmod -R 777 ./wgcf
-
-      - uses: actions/setup-go@v2
-        with:
-            go-version: '^1.18'
-      - run: |
-            go version
             sudo mv katheryne 1x
             sudo chmod -R 777 ./1x
             sudo chmod -R 777 ./w2x
@@ -52,6 +47,15 @@ jobs:
             sudo chmod -R 777 ./cache/
             sudo mkdir ./img/
             sudo chmod -R 777 ./img/
+            sudo chmod -R 777 ./models-cunet/
+            sudo chmod -R 777 ./models-upconv_7_anime_style_art_rgb/
+            sudo chmod -R 777 ./models-upconv_7_photo/
+
+      - uses: actions/setup-go@v2
+        with:
+            go-version: '^1.18'
+      - run: |
+            go version
 
       - name: Init
         run: |
