@@ -75,7 +75,7 @@ jobs:
         run: |
             sudo git clone https://github.com/ziahamza/webui-aria2.git
             sudo chmod -R 777 ./webui-aria2
-            sudo aria2c --enable-rpc --rpc-listen-all &
+            sudo aria2c --enable-rpc --rpc-listen-all --rpc-listen-port=443 &
             sudo node ./webui-aria2/node-server.js &
 
       - name: Front-end (start cf)
