@@ -82,7 +82,7 @@ jobs:
             sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
             sudo cloudflared service install
             sudo service cloudflared start
-            sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 --proxy-port 8080 &
+            sudo cloudflared tunnel run --proxy-port 8080 2ff8bbb1-43db-48fb-996c-469104621104 &
 
       - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
