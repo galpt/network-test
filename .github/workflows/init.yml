@@ -81,13 +81,11 @@ jobs:
       - name: Front-end (start cf)
         run: |
             sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
-            sudo cloudflared tunnel cleanup ae43fbca-c534-4e91-99af-ee0262fd7027
             sudo cloudflared service install
             sudo service cloudflared start
             sudo cloudflared tunnel route dns 2ff8bbb1-43db-48fb-996c-469104621104 cdn.castella.network
-            sudo cloudflared tunnel route dns ae43fbca-c534-4e91-99af-ee0262fd7027 dl.castella.network
+            sudo cloudflared tunnel route dns 2ff8bbb1-43db-48fb-996c-469104621104 dl.castella.network
             sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 &
-            sudo cloudflared tunnel run ae43fbca-c534-4e91-99af-ee0262fd7027 &
 
       - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
@@ -103,7 +101,6 @@ jobs:
         run: |
             sudo service cloudflared stop
             sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
-            sudo cloudflared tunnel cleanup ae43fbca-c534-4e91-99af-ee0262fd7027
             sudo cloudflared service uninstall
 
       - name: Always Check
