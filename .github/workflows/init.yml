@@ -31,7 +31,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y apt-fast
             sudo cp -f ./apt-fast.conf /var/cache/apt/archives/
-            sudo apt-get install -y wget unzip ffmpeg python3-pip git curl nodejs npm libcurl4-openssl-dev aria2
+            sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev aria2
             sudo python3 -m pip install -U yt-dlp
 
       - name: Set Permissions
@@ -76,7 +76,6 @@ jobs:
             sudo git clone https://github.com/ziahamza/webui-aria2.git
             sudo chmod -R 777 ./webui-aria2
             sudo aria2c --enable-rpc --rpc-listen-all --rpc-listen-port=443 &
-            sudo node ./webui-aria2/node-server.js &
 
       - name: Front-end (start cf)
         run: |
