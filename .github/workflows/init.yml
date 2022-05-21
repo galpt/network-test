@@ -75,14 +75,14 @@ jobs:
         run: |
             sudo git clone https://github.com/ziahamza/webui-aria2.git
             sudo chmod -R 777 ./webui-aria2
-            sudo aria2c --enable-rpc --rpc-listen-all --rpc-listen-port=8080 &
+            sudo aria2c --enable-rpc --rpc-listen-all &
 
       - name: Front-end (start cf)
         run: |
             sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
             sudo cloudflared service install
             sudo service cloudflared start
-            sudo cloudflared tunnel run --proxy-port 8080 2ff8bbb1-43db-48fb-996c-469104621104 &
+            sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 &
 
       - name: Sleep for 5s
         uses: juliangruber/sleep-action@v1
