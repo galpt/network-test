@@ -31,7 +31,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y apt-fast
             sudo cp -f ./apt-fast.conf /var/cache/apt/archives/
-            sudo apt-get install -y wget unzip ffmpeg python3-pip git curl libcurl4-openssl-dev aria2
+            sudo apt-get install -y git curl wget unzip ffmpeg python3-pip libcurl4-openssl-dev
             sudo python3 -m pip install -U yt-dlp
 
       - name: Set Permissions
@@ -45,12 +45,21 @@ jobs:
             sudo chmod -R 777 ./magick
             sudo chmod -R 777 ./resrgan/resrgan
             sudo mkdir ./cache/
+            sudo mkdir ./nh/
             sudo chmod -R 777 ./cache/
+            sudo chmod -R 777 ./nh/
             sudo mkdir ./img/
             sudo chmod -R 777 ./img/
             sudo chmod -R 777 ./models-cunet/
             sudo chmod -R 777 ./models-upconv_7_anime_style_art_rgb/
             sudo chmod -R 777 ./models-upconv_7_photo/
+
+      - name: Cache ./nh/
+        id: cache-nh
+        uses: actions/cache@v3
+        with:
+          path: ./nh/
+          key: ${{ runner.os }}-nh
 
       - uses: actions/setup-go@v2
         with:
@@ -70,12 +79,6 @@ jobs:
             sudo cp ./cf/cert.pem /root/.cloudflared/
             sudo cp ./cf/config.yml /root/.cloudflared/
             sudo rm -rf /etc/cloudflared/config.yml
-
-      - name: Aria2
-        run: |
-            sudo git clone https://github.com/ziahamza/webui-aria2.git
-            sudo chmod -R 777 ./webui-aria2
-            sudo aria2c --enable-rpc --rpc-listen-all &
 
       - name: Front-end (start cf)
         run: |
