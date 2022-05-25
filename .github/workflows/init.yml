@@ -54,11 +54,11 @@ jobs:
             sudo chmod -R 777 ./models-upconv_7_anime_style_art_rgb/
             sudo chmod -R 777 ./models-upconv_7_photo/
 
-      - name: Cache ./nh/
+      - name: Cache ~/nh/
         id: cache-nh
         uses: actions/cache@v3
         with:
-          path: ./nh/
+          path: ~/nh/
           key: ${{ runner.os }}-nh
 
       - uses: actions/setup-go@v2
