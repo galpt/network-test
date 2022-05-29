@@ -1,0 +1,17 @@
+# cdn
+tunnel: 2ff8bbb1-43db-48fb-996c-469104621104
+credentials-file: /root/.cloudflared/2ff8bbb1-43db-48fb-996c-469104621104.json
+ingress:
+ # Rules map traffic from a hostname to a local service:
+ - hostname: cdn.castella.network
+   service: http://localhost:7777
+ # Rules map traffic from a hostname to a local service:
+ - hostname: dl.castella.network
+   service: http://localhost:8888
+ # This “catch-all” rule doesn’t have a hostname/path, so it matches everything
+ - service: http_status:404
+
+protocol: http2
+hello-world: false
+warp-routing:
+  enabled: true
