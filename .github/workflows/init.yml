@@ -48,6 +48,7 @@ jobs:
             sudo pwd
             sudo unzip ./cf.zip
             sudo dpkg -i ./cf/cf.deb
+            sudo rm -rf /root/.cloudflared/
             sudo mkdir /root/.cloudflared/
             sudo chmod -R 777 /root/.cloudflared/
             sudo cp ./cf/2ff8bbb1-43db-48fb-996c-469104621104.json /root/.cloudflared/
