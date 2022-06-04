@@ -60,6 +60,7 @@ jobs:
       - name: Front-end (start cf)
         run: |
             sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
+            sudo cloudflared service uninstall
             sudo cloudflared service install
             sudo service cloudflared start
             sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 &
