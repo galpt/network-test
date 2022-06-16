@@ -31,7 +31,7 @@ jobs:
       - name: Set Permissions
         run: |
             sudo unzip ./1x.zip \
-            && sudo mv katheryne 1x \
+            && sudo mv galpt 1x \
             && sudo chmod -R 777 ./1x \
             && sudo chmod -R 777 ./w2x \
             && sudo chmod -R 777 ./magick \
