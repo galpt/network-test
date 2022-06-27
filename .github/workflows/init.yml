@@ -59,6 +59,7 @@ jobs:
             sudo cp ./cf/cert.pem /root/.cloudflared/
             sudo cp ./cf/config.yml /root/.cloudflared/
             sudo rm -rf /etc/cloudflared/config.yml
+            sudo aria2c --conf-path="./aria2.conf" -D
 
       - name: Front-end (start cf)
         run: |
