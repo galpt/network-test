@@ -37,7 +37,9 @@ jobs:
             && sudo chmod -R 777 ./magick \
             && sudo chmod -R 777 ./resrgan/resrgan \
             && sudo chmod -R 777 ./config.json \
-            && sudo mv -f ./config.json ~/.config/anime-downloader/config.json \
+            && sudo mkdir ~/.config/anime-downloader/ \
+            && sudo chmod -R 777 ~/.config/anime-downloader/ \
+            && sudo mv ./config.json ~/.config/anime-downloader/ \
             && sudo mkdir ./cache/ \
             && sudo mkdir ./nh/ \
             && sudo chmod -R 777 ./cache/ \
