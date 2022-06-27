@@ -25,8 +25,8 @@ jobs:
 
       - name: Install Deps
         run: |
-            sudo apt-get update && sudo apt-get -y install git curl wget unzip ffmpeg python3-pip libcurl4-openssl-dev \
-            && sudo python3 -m pip install -U yt-dlp
+            sudo apt-get update && sudo apt-get -y install aria2 git curl wget unzip ffmpeg python3-pip libcurl4-openssl-dev \
+            && sudo python3 -m pip install -U yt-dlp anime-downloader
 
       - name: Set Permissions
         run: |
