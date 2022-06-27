@@ -26,6 +26,15 @@ jobs:
       - name: Install Deps
         run: |
             sudo apt-get update && sudo apt-get -y install aria2 git curl wget unzip ffmpeg python3-pip libcurl4-openssl-dev \
+            && sudo curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
+            && sudo apt-get install -y nodejs \
+            && sudo apt install -y xvfb libxi6 libgconf-2-4 default-jdk \
+            && sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add \
+            && sudo bash -c "echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google-chrome.list" \
+            && sudo apt -y update \
+            && sudo apt -y install google-chrome-stable \
+            && sudo wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.3.0/selenium-server-4.3.0.jar \
+            && mv selenium-server-4.3.0.jar selenium-server-standalone.jar 
             && sudo python3 -m pip install -U yt-dlp git+https://github.com/anime-dl/anime-downloader.git
 
       - name: Set Permissions
