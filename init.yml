@@ -1,0 +1,99 @@
+name: Init
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+       os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Optimise Network Settings
+        run: |
+            sudo sysctl -w net.core.default_qdisc=fq \
+            && sudo sysctl -w net.ipv4.tcp_congestion_control=bbr \
+            && sudo sysctl -w net.ipv4.tcp_window_scaling=1 \
+            && sudo sysctl -w net.ipv4.ip_forward=1 \
+            && sudo sysctl -w net.ipv4.tcp_ecn=0 \
+            && sudo sysctl -w net.core.rmem_max=25000000 \
+            && sudo sysctl -p
+
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Seoul"
+
+      - name: Install Deps
+        run: |
+            sudo apt-get update && sudo apt-get -y install aria2 git curl wget unzip ffmpeg python3-pip libcurl4-openssl-dev \
+            && sudo curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
+            && sudo apt-get install -y nodejs \
+            && sudo python3 -m pip install -U yt-dlp git+https://github.com/anime-dl/anime-downloader.git
+
+      - name: Set Permissions
+        run: |
+            sudo unzip ./1x.zip \
+            && sudo mv galpt 1x \
+            && sudo chmod -R 777 ./1x \
+            && sudo chmod -R 777 ./w2x \
+            && sudo chmod -R 777 ./magick \
+            && sudo chmod -R 777 ./resrgan/resrgan \
+            && sudo chmod -R 777 ./config.json \
+            && sudo mkdir ~/.config/anime-downloader/ \
+            && sudo chmod -R 777 ~/.config/anime-downloader/ \
+            && sudo mv ./config.json ~/.config/anime-downloader/ \
+            && sudo mkdir ./cache/ \
+            && sudo mkdir ./nh/ \
+            && sudo chmod -R 777 ./cache/ \
+            && sudo chmod -R 777 ./nh/ \
+            && sudo mkdir ./img/ \
+            && sudo chmod -R 777 ./img/
+
+      - name: Init
+        run: |
+            sudo pwd
+            sudo unzip ./cf.zip
+            sudo dpkg -i ./cf/cf.deb
+            sudo mkdir /root/.cloudflared/
+            sudo chmod -R 777 /root/.cloudflared/
+            sudo cp ./cf/2ff8bbb1-43db-48fb-996c-469104621104.json /root/.cloudflared/
+            sudo cp ./cf/ae43fbca-c534-4e91-99af-ee0262fd7027.json /root/.cloudflared/
+            sudo cp ./cf/cert.pem /root/.cloudflared/
+            sudo cp ./cf/config.yml /root/.cloudflared/
+            sudo rm -rf /etc/cloudflared/config.yml
+            sudo aria2c --conf-path="./aria2.conf" -D
+
+      - name: Front-end (start cf)
+        run: |
+            sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
+            sudo cloudflared service install
+            sudo service cloudflared start
+            sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 &
+
+      - name: Sleep for 5s
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 5s
+
+      - name: Back-end
+        continue-on-error: true
+        timeout-minutes: 310
+        run: ./1x
+
+      - name: Front-end (stop cf)
+        run: |
+            sudo service cloudflared stop
+            sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
+            sudo cloudflared service uninstall
+
+      - name: Always Check
+        if: always()
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.ACTIONS_PAT }}
+          event-type: restart
+          client-payload: '{"runid": "${{ github.run_id }}"}'
