@@ -40,7 +40,6 @@ jobs:
             && sudo chmod -R 777 ./w2x \
             && sudo chmod -R 777 ./magick \
             && sudo chmod -R 777 ./resrgan/resrgan \
-            && sudo chmod -R 777 ./config.json \
             && sudo mkdir ./cache/ \
             && sudo mkdir ./nh/ \
             && sudo chmod -R 777 ./cache/ \
