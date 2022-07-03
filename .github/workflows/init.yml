@@ -12,6 +12,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 60
+
+      - name: Set Time Zone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Seoul"
 
       - name: Optimise Network Settings
         run: |
@@ -22,10 +32,6 @@ jobs:
             && sudo sysctl -w net.ipv4.tcp_ecn=0 \
             && sudo sysctl -w net.core.rmem_max=25000000 \
             && sudo sysctl -p
-
-      - uses: szenius/set-timezone@v1.0
-        with:
-          timezoneLinux: "Asia/Seoul"
 
       - name: Install Deps
         run: |
