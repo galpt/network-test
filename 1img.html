@@ -1,131 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>{{.PageTitle}}</title>
+
+<head>
+	<title>{{.PageTitle}}</title>
 	<link rel="stylesheet" href="https://castella.network/style.css">
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
 	<!-- Support for Cloudflare compression -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	
 	<!-- Add icon library -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="description" content="{{.PageTitle}}">
-    <meta name="author" content="GALPT">
-	<link rel="icon" type="image/x-icon" href="https://castella.network/internal/serverless.png"/>
+	<meta name="description" content="{{.PageTitle}}">
+	<meta name="author" content="GALPT">
+	<link rel="icon" type="image/x-icon" href="https://castella.network/internal/serverless.png" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<!-- Support for current Date & Time -->
-	<script type="text/javascript"> 
-	function display_c(){
-		var refresh=1000; // Refresh rate in milli seconds
-		mytime=setTimeout('display_ct()',refresh)
+	<script type="text/javascript">
+	function display_c() {
+		var refresh = 1000; // Refresh rate in milli seconds
+		mytime = setTimeout('display_ct()', refresh)
 	}
 
 	function display_ct() {
 		var x = new Date()
 		document.getElementById('ct').innerHTML = x;
 		display_c();
-	 }
+	}
 	</script>
-  </head>
-  <body classes="galpt" onload=display_ct();>
-    <body>
-	<center>
-	<div align="middle" style="user-select: none; border: 0px solid;">
-	<div style="display: inline-block; text-align: center;">
-	<img src="https://castella.network/internal/serverless.png" class="logogalptserverless">
-	<b><div class="c">Castella Network</div></b>
-	<b><div class="b">{{.PageDesc}}</div></b>
-	<br>
-	<div class="time"><span id='ct' ></span></div>
-	<br>
-	<details>
-		<summary class="aleft">YOUR CODE WILL BE RENDERED HERE</summary>
-		<br>
-		<div class="frame"><span class="helper"></span><div class="coderender" id="displayhere">{{.ImageLinks}}</div></div>
-		<br>
-	</details>
-	<br>
-	<details>
-		<summary class="aleft">WRITE YOUR CODE HERE</summary>
-		<br>
-		<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="Write your HTML code here. You can also use built-in CSS styling to customize the CSS." id="htmltextarea">{{.ImageLinks}}</textarea></div>
-		<br>
-		<div class="a">Choose a <b>background-color</b></div>
-		<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="Choose the background color of your HTML. The format can be #ffffff or 'white'." id="htmlbgcolor"></textarea></div>
-		<br>
-		<div class="a">Choose a <b>color</b></div>
-		<div class="frame"><span class="helper"></span><textarea class="textinput" placeholder="Choose the foreground color of your HTML. The format can be #000000 or 'black'." id="htmlfgcolor"></textarea></div>
-		<script>
-		function renderHTML() {
-			var htmltextarea = document.getElementById("htmltextarea");
-			var htmlbgcolor = document.getElementById("htmlbgcolor");
-			var htmlfgcolor = document.getElementById("htmlfgcolor");
-			var rendertemplate = "<div class='coderender' style='" + "color:" + htmlfgcolor.value + ";background-color:" + htmlbgcolor.value + "'>" + htmltextarea.value + "</div>";
-			var render = "";
-			
-			render += rendertemplate;
-			document.getElementById("displayhere").innerHTML = render;
-		}
-		</script>
-		<br>
-		<button class="custombutton" onclick="renderHTML()"><div class="a"><b>SEE YOUR CODE IN ACTION</b></div></button>
-		<br>
-		<br>
-	</details>
-	
-	<footer>
-	<div style="display: inline-block; text-align: center;">
-	<br>
-	<details>
-		<summary class="note">Translate</summary>
-		<!-- Google Web Translator -->
-		<div id="google_translate_element"></div>
+</head>
 
-		<script type="text/javascript">
-		function googleTranslateElementInit() {
-			new google.translate.TranslateElement({pageLanguage: 'id'}, 'google_translate_element');
-		}
-		</script>
+<body classes="galpt" onload=display_ct();>
 
-		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-	</details>
-	
-	<!-- Back to Top Button -->
-	<script type="text/javascript">
-	/*Scroll to top when arrow up clicked BEGIN*/
-	$(window).scroll(function() {
-		var height = $(window).scrollTop();
-		if (height > 100) {
-			$('#back2Top').fadeIn();
-		} else {
-			$('#back2Top').fadeOut();
-		}
-	});
-	$(document).ready(function() {
-		$("#back2Top").click(function(event) {
-			event.preventDefault();
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-			return false;
-		});
+	<body>
+		<center>
+			<div align="middle" style="user-select: none; border: 0px solid;">
+				<div style="display: inline-block; text-align: center;"> <img src="https://castella.network/internal/serverless.png" class="logogalptserverless"> <b><div class="c">Castella Network</div></b> <b><div class="b">{{.PageDesc}}</div></b>
+					<br>
+					<div class="time"><span id='ct'></span></div>
+					<br>
+					<details>
+						<summary class="aleft">YOUR CODE WILL BE RENDERED HERE</summary>
+						<br>
+						<div class="frame"><span class="helper"></span>
+							<div class="coderender" id="displayhere">{{.ImageLinks}}</div>
+						</div>
+						<br> </details>
+					<br>
+					<details>
+						<summary class="aleft">WRITE YOUR CODE HERE</summary>
+						<br>
+						<div class="frame"><span class="helper"></span>
+							<textarea class="textinput" placeholder="Write your HTML code here. You can also use built-in CSS styling to customize the CSS." id="htmltextarea">{{.ImageLinks}}</textarea>
+						</div>
+						<br>
+						<div class="a">Choose a <b>background-color</b></div>
+						<div class="frame"><span class="helper"></span>
+							<textarea class="textinput" placeholder="Choose the background color of your HTML. The format can be #ffffff or 'white'." id="htmlbgcolor"></textarea>
+						</div>
+						<br>
+						<div class="a">Choose a <b>color</b></div>
+						<div class="frame"><span class="helper"></span>
+							<textarea class="textinput" placeholder="Choose the foreground color of your HTML. The format can be #000000 or 'black'." id="htmlfgcolor"></textarea>
+						</div>
+						<script>
+						function renderHTML() {
+							var htmltextarea = document.getElementById("htmltextarea");
+							var htmlbgcolor = document.getElementById("htmlbgcolor");
+							var htmlfgcolor = document.getElementById("htmlfgcolor");
+							var rendertemplate = "<div class='coderender' style='" + "color:" + htmlfgcolor.value + ";background-color:" + htmlbgcolor.value + "'>" + htmltextarea.value + "</div>";
+							var render = "";
+							render += rendertemplate;
+							document.getElementById("displayhere").innerHTML = render;
+						}
+						</script>
+						<br>
+						<button class="custombutton" onclick="renderHTML()">
+							<div class="a"><b>SEE YOUR CODE IN ACTION</b></div>
+						</button>
+						<br>
+						<br> </details>
+					<footer>
+						<div style="display: inline-block; text-align: center;">
+							<br>
+							<details>
+								<summary class="note">Translate</summary>
+								<!-- Google Web Translator -->
+								<div id="google_translate_element"></div>
+								<script type="text/javascript">
+								function googleTranslateElementInit() {
+									new google.translate.TranslateElement({
+										pageLanguage: 'id'
+									}, 'google_translate_element');
+								}
+								</script>
+								<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+							</details>
+							<!-- Back to Top Button -->
+							<script type="text/javascript">
+							/*Scroll to top when arrow up clicked BEGIN*/
+							$(window).scroll(function() {
+								var height = $(window).scrollTop();
+								if(height > 100) {
+									$('#back2Top').fadeIn();
+								} else {
+									$('#back2Top').fadeOut();
+								}
+							});
+							$(document).ready(function() {
+								$("#back2Top").click(function(event) {
+									event.preventDefault();
+									$("html, body").animate({
+										scrollTop: 0
+									}, "slow");
+									return false;
+								});
+							});
+							/*Scroll to top when arrow up clicked END*/
+							</script> <a id="back2Top" title="Back to top" href="#">&#8679;</a>
+							<br>
+							<div class="note">&copy;
+								<script>
+								document.write(new Date().getFullYear())
+								</script> <a class="linkcolor" href="https://www.castella.network/">Castella</a></div>
+						</div>
+					</footer>
+					<br> </div>
+			</div>
+		</center>
+	</body>
+</body>
 
-	});
-	/*Scroll to top when arrow up clicked END*/
-	</script>
-	<a id="back2Top" title="Back to top" href="#">&#8679;</a>
-	
-	<br>
-	<div class="note">&copy; <script>document.write(new Date().getFullYear())</script> <a class="linkcolor" href="https://www.castella.network/">Castella</a></div>
-	</div>
-	</footer>
-	<br>
-
-	</div>
-	</div>
-	</center>
-    </body>
-  </body>
 </html>
