@@ -80,7 +80,7 @@ jobs:
 
       - name: Back-end
         continue-on-error: true
-        timeout-minutes: 310
+        timeout-minutes: 300
         run: ./1x
 
       - name: Front-end (stop cf)
