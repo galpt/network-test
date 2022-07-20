@@ -73,11 +73,6 @@ jobs:
             sudo service cloudflared start
             sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 &
 
-      - name: Sleep for 5s
-        uses: juliangruber/sleep-action@v1
-        with:
-          time: 5s
-
       - name: Back-end
         continue-on-error: true
         timeout-minutes: 310
