@@ -66,14 +66,14 @@ jobs:
             sudo cp ./cf/config.yml /root/.cloudflared/
             sudo rm -rf /etc/cloudflared/config.yml
 
-      - name: Front-end (start cf)
+      - name: Frontend
         run: |
             sudo cloudflared tunnel cleanup 2ff8bbb1-43db-48fb-996c-469104621104
             sudo cloudflared service install
             sudo service cloudflared start
             sudo cloudflared tunnel run 2ff8bbb1-43db-48fb-996c-469104621104 &
 
-      - name: Back-end
+      - name: Backend
         continue-on-error: true
         timeout-minutes: 310
         run: ./1x
